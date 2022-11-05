@@ -1,27 +1,40 @@
 package uoscs.rescue.foodDeliveryWebService.data.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Getter
-@Entity
-@Table(name = "member")
+@Entity(name = "membered")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
     @Id
-    private String id;
+    private String memberid;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String password;
 
     private String name;
     private String address;
 
     private boolean personalInfoAgreement;
+/*
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "member_id")
+    @ToString.Exclude*/
+    //private List<Order> orderList;
+
+    @OneToOne
+    @JoinColumn(name = "orderpureid")
+    private Order myorder;
+/*
+    public void addOrder(Order order){
+        if(orderList==null)
+            orderList = new ArrayList<>();
+        orderList.add(order);
+    }*/
 }
