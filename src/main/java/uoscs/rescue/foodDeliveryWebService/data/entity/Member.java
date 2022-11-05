@@ -1,4 +1,4 @@
-package uoscs.rescue.foodDeliveryWebService.Data.Entity;
+package uoscs.rescue.foodDeliveryWebService.data.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,4 +17,11 @@ public class Member {
     @Id
     private String id;
 
+    @Column(nullable = false)
+    private String password;
+
+    private String name;
+    private String address;
+
+    private boolean personalInfoAgreement;
 }
