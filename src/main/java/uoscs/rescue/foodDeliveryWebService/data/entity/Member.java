@@ -12,6 +12,7 @@ import java.util.List;
 @Entity(name = "membered")
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Member {
     @Id
     private String id;

@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.Transactional;
+import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
+import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
+import uoscs.rescue.foodDeliveryWebService.data.mapper.MemberMapper;
+import uoscs.rescue.foodDeliveryWebService.data.mapper.OrderMapper;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -27,6 +31,12 @@ class RepositoryTest {
     private OrderRepository orderRepository;
     @Autowired
     private EntityManager em;
+
+    @Autowired
+    private MemberMapper memberMapper = MemberMapper.INSTANCE;
+
+    @Autowired
+    private OrderMapper orderMapper = OrderMapper.INSTANCE;
 
     @AfterEach
     void afterEach(){
@@ -64,6 +74,39 @@ class RepositoryTest {
         for (Order orders: memberRepository.findById(member.getId()).get().getOrderList()) {
             System.out.println(orders);
         }
+    }
+
+    @Test
+    @Transactional  //테스트에 붙이면 반영된게 롤백
+    void saveMemberWithListOrderMapper(){
+        Member member = Member.builder().id("124").build();
+        memberRepository.save(member);
+
+        Order order1 = Order.builder().id("10000").orderedMember(member).price(100).build();
+        Order order2 = Order.builder().id("10001").orderedMember(member).price(1200).build();
+
+        orderRepository.save(order1);
+        orderRepository.save(order2);
+
+        em.flush();
+        em.clear();
+
+
+        Order orderInRepo = orderRepository.findById(order1.getId()).get();
+        OrderDto orderDto = orderMapper.orderToDto(orderInRepo);
+        System.out.println(orderDto);
+
+
+        em.flush();
+        em.clear();
+        Member memberInRepo = memberRepository.findById(member.getId()).get();
+        System.out.println("size: "+ memberInRepo.getOrderList().size());
+        for (Order order: memberInRepo.getOrderList()) {
+            System.out.println("order member : " + order.getOrderedMember().toString());
+        }
+
+        MemberDto memberDto = memberMapper.memberToDto(memberInRepo);
+        System.out.println(memberDto);
     }
 
     @Test
