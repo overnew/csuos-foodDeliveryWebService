@@ -8,26 +8,23 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Setter
-@Entity(name = "order_pure")
+@Entity(name = "orders")
 //@Table(name = "order_pure")
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderpureid;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
 
     //@Column(nullable = false)
     private LocalDateTime orderTime;
 
-
-/*
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "member_id")
-    @ToString.Exclude*/
-
-    @OneToOne(mappedBy = "myorder", fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "membered_id")
+    //@ToString.Exclude
+    //@OneToOne(mappedBy = "myorder")
     @ToString.Exclude
     private Member orderedMember;
 

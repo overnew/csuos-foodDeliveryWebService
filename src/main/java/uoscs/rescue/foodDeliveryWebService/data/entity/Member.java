@@ -8,12 +8,13 @@ import java.util.List;
 
 @Builder
 @Getter
+@Setter
 @Entity(name = "membered")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
     @Id
-    private String memberid;
+    private String id;
 
     //@Column(nullable = false)
     private String password;
@@ -22,19 +23,15 @@ public class Member {
     private String address;
 
     private boolean personalInfoAgreement;
-/*
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "member_id")
-    @ToString.Exclude*/
-    //private List<Order> orderList;
 
-    @OneToOne
-    @JoinColumn(name = "orderpureid")
-    private Order myorder;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderedMember", fetch = FetchType.EAGER)
+    //@JoinColumn(name = "order_id")
+    @ToString.Exclude
+    private List<Order> orderList;
+
 /*
-    public void addOrder(Order order){
-        if(orderList==null)
-            orderList = new ArrayList<>();
-        orderList.add(order);
-    }*/
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "orders_id")
+    private Order myorder; */
+
 }
