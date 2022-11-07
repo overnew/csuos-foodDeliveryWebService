@@ -53,6 +53,11 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     @Override
+    public Member findMemberEntityById(String id) {
+        return getMemberEntityById(id);
+    }
+
+    @Override
     public void updateById(String id, MemberDto updateDto) {
         Member member = getMemberEntityById(id);
         member.setName(updateDto.getName());
