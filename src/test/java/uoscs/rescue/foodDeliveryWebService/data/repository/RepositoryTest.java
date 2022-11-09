@@ -15,7 +15,6 @@ import uoscs.rescue.foodDeliveryWebService.data.mapper.MemberMapper;
 import uoscs.rescue.foodDeliveryWebService.data.mapper.OrderMapper;
 
 import javax.persistence.EntityManager;
-import java.util.List;
 
 @ComponentScan(basePackages = "uoscs.rescue.foodDeliveryWebService")
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

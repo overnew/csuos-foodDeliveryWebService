@@ -1,6 +1,7 @@
 package uoscs.rescue.foodDeliveryWebService.data.entity;
 
 import lombok.*;
+import uoscs.rescue.foodDeliveryWebService.data.enums.Grade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class Member {
     //@JoinColumn(name = "order_id")
     @ToString.Exclude
     private List<Order> orderList;
+
+    private Grade grade;
 
 /*
     @OneToOne(fetch = FetchType.EAGER)
