@@ -16,8 +16,12 @@ import java.util.List;
 @SpringBootTest
 class MapperTest {
 
-    private MemberMapper memberMapper = MemberMapper.INSTANCE;
+    @Autowired
+    private MemberMapper memberMapper;
+    @Autowired
+    private OrderMapper orderMapper;
 
+/*
     @Test
     void mapperTest(){
         List<Order> orderList = new ArrayList<>();
@@ -28,7 +32,7 @@ class MapperTest {
 
         MemberDto memberDto = memberMapper.memberToDto(member);
         System.out.println(memberDto);
-    }
+    }*/
 
     @Test
     void enumMappingTest(){
@@ -43,4 +47,5 @@ class MapperTest {
         Assertions.assertThat(memberMapper.dtoToMember(memberDto).getGrade()).isEqualTo(Grade.GENERAL);
 
     }
+
 }

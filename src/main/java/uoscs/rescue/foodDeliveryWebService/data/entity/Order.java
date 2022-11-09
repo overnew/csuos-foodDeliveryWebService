@@ -1,6 +1,8 @@
 package uoscs.rescue.foodDeliveryWebService.data.entity;
 
 import lombok.*;
+import uoscs.rescue.foodDeliveryWebService.data.enums.DinnerStyle;
+import uoscs.rescue.foodDeliveryWebService.data.enums.DinnerType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,7 +25,6 @@ public class Order {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "membered_id")
-    //@ToString.Exclude
     //@OneToOne(mappedBy = "myorder")
     @ToString.Exclude
     private Member orderedMember;
@@ -36,4 +37,16 @@ public class Order {
 
     //@Column(nullable = false)
     private boolean accepted;
+
+    private DinnerType dinnerType;
+    private DinnerStyle dinnerStyle;
+
+    private int steak;
+    private int bacon;
+    private int eggScramble;
+    private int bread;
+    private int salad;
+    private int coffee;
+    private int wine;
+    private int champagne;
 }

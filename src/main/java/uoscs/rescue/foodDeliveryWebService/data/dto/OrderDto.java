@@ -1,6 +1,9 @@
 package uoscs.rescue.foodDeliveryWebService.data.dto;
 
 import lombok.*;
+import uoscs.rescue.foodDeliveryWebService.data.enums.DinnerStyle;
+import uoscs.rescue.foodDeliveryWebService.data.enums.DinnerType;
+
 import java.time.LocalDateTime;
 
 @Builder
@@ -21,4 +24,16 @@ public class OrderDto {
     private String address;
 
     private boolean accepted;
+
+    private DinnerType dinnerType;
+    private DinnerStyle dinnerStyle;
+
+    private int steak;
+    private int bacon;
+    private int eggScramble;
+    private int bread;
+    private int salad;
+    private int coffee;
+    private int wine;
+    private int champagne;
 }
