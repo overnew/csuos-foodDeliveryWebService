@@ -1,6 +1,7 @@
 package uoscs.rescue.foodDeliveryWebService.data.dto;
 
 import lombok.*;
+import uoscs.rescue.foodDeliveryWebService.data.enums.Authority;
 import uoscs.rescue.foodDeliveryWebService.data.enums.Grade;
 
 import java.util.List;
@@ -25,4 +26,5 @@ public class MemberDto {
     private List<OrderDto> orderDtoList;
 
     private Grade grade;
+    private Authority authority;
 }

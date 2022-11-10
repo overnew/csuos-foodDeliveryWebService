@@ -1,6 +1,7 @@
 package uoscs.rescue.foodDeliveryWebService.data.entity;
 
 import lombok.*;
+import uoscs.rescue.foodDeliveryWebService.data.enums.Authority;
 import uoscs.rescue.foodDeliveryWebService.data.enums.Grade;
 
 import javax.persistence.*;
@@ -32,6 +33,8 @@ public class Member {
     private List<Order> orderList;
 
     private Grade grade;
+
+    private Authority authority;
 
 /*
     @OneToOne(fetch = FetchType.EAGER)
