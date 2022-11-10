@@ -38,4 +38,9 @@ public class MemberServiceImpl implements MemberService {
 
         return true;
     }
+
+    @Override
+    public MemberDto findById(String id) {
+       return memberDao.findById(id);
+    }
 }

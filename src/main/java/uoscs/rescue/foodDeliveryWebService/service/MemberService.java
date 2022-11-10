@@ -5,5 +5,8 @@ import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 
 public interface MemberService {
     MemberDto save(MemberDto memberDto);
+
     boolean checkIdAndPassword(String id, String password);
+    MemberDto findById(String id);
+
 }
