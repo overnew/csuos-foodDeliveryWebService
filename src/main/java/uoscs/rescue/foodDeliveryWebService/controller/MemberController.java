@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
+import uoscs.rescue.foodDeliveryWebService.data.form.SessionForm;
 import uoscs.rescue.foodDeliveryWebService.service.MemberService;
 import uoscs.rescue.foodDeliveryWebService.utils.SessionConst;
 
@@ -18,10 +19,10 @@ public class MemberController {
 
     @PostMapping("/get-my-data")
     public ResponseEntity<MemberDto> getMemberData(
-            @SessionAttribute(name = SessionConst.SIGN_ID, required = false)
-            String id
+            @SessionAttribute(name = SessionConst.SESSION_FORM, required = false)
+            SessionForm sessionForm
     ){
-        return ResponseEntity.ok(memberService.findById(id));
+        return ResponseEntity.ok(memberService.findById(sessionForm.getId()));
     }
 
 
