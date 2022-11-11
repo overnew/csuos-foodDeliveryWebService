@@ -4,9 +4,12 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
 import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
+
+import javax.persistence.EntityManager;
 
 @SpringBootTest
 class OrderDaoTest {
@@ -15,6 +18,9 @@ class OrderDaoTest {
     private MemberDao memberDao;
     @Autowired
     private OrderDao orderDao;
+
+    @Autowired
+    private EntityManager em;
 
     @Test
     void saveOrderWithMember(){
@@ -33,5 +39,34 @@ class OrderDaoTest {
         //then
         Assertions.assertThat(savedMember.getOrderList().get(0).getId())
                 .isEqualTo(savedOrder.getId());
+    }
+
+    @Test
+    @Transactional
+    void acceptOrder(){
+        //given
+        MemberDto memberDto = MemberDto.builder().id("samayou").build();
+        memberDao.save(memberDto);
+
+        //when
+        OrderDto orderDto = OrderDto.builder()
+                .accepted(false)
+                .orderedMemberId(memberDto.getId())
+                .build();
+
+        em.flush();
+        em.clear();
+
+        OrderDto savedOrder = orderDao.saveWithMemberId(orderDto);
+
+        orderDao.acceptOrderById(savedOrder.getId());
+
+        em.flush();
+        em.clear();
+
+        OrderDto acceptedOrder = orderDao.findById(savedOrder.getId());
+
+        //then
+        Assertions.assertThat(acceptedOrder.isAccepted()).isTrue();
     }
 }

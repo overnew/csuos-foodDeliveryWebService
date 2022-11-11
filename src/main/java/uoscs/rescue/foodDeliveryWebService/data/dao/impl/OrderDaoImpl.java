@@ -57,4 +57,12 @@ public class OrderDaoImpl implements OrderDao {
 
         return orderMapper.orderToDto(orderEntity);
     }
+
+    @Override
+    public void acceptOrderById(Long id) {
+        Order order = getOrderEntityById(id);
+        order.setAccepted(true);
+
+        log.info("accept order id: ");
+    }
 }

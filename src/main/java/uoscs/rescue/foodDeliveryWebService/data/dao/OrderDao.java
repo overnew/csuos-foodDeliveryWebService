@@ -7,4 +7,6 @@ public interface OrderDao {
     OrderDto saveWithMemberId(OrderDto orderDto);
 
     OrderDto findById(Long id);
+
+    void acceptOrderById(Long id);
 }

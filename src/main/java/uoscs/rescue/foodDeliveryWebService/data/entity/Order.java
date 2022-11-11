@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Builder
 @Getter
-@Setter
 @Entity(name = "orders")
 //@Table(name = "order_pure")
 @AllArgsConstructor
@@ -23,6 +22,7 @@ public class Order {
     //@Column(nullable = false)
     private LocalDateTime orderTime;
 
+    @Setter
     @ManyToOne(optional = false)
     @JoinColumn(name = "membered_id")
     //@OneToOne(mappedBy = "myorder")
@@ -36,6 +36,7 @@ public class Order {
     private String address;
 
     //@Column(nullable = false)
+    @Setter
     private boolean accepted;
 
     private DinnerType dinnerType;
