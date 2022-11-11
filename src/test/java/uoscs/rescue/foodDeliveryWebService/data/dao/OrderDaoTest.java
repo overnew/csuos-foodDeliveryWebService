@@ -10,6 +10,7 @@ import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @SpringBootTest
 class OrderDaoTest {
@@ -68,5 +69,34 @@ class OrderDaoTest {
 
         //then
         Assertions.assertThat(acceptedOrder.isAccepted()).isTrue();
+    }
+
+    @Test
+    @Transactional
+    void deleteOrderWithListInMember(){
+
+        //given
+        MemberDto memberDto = MemberDto.builder().id("samayou").build();
+        memberDao.save(memberDto);
+
+        //when
+        OrderDto orderDto = OrderDto.builder()
+                .accepted(false)
+                .orderedMemberId(memberDto.getId())
+                .build();
+
+        em.flush();
+        em.clear();
+
+        OrderDto savedOrder = orderDao.saveWithMemberId(orderDto);
+        orderDao.deleteById(savedOrder.getId());
+
+        em.flush();
+        em.clear();
+
+        //then
+        MemberDto savedMember = memberDao.findById(memberDto.getId());
+        List<OrderDto> orderDtoList = savedMember.getOrderDtoList();
+        Assertions.assertThat(orderDtoList.size()).isEqualTo(0);
     }
 }

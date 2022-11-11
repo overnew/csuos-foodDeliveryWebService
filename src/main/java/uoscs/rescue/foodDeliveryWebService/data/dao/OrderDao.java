@@ -9,4 +9,6 @@ public interface OrderDao {
     OrderDto findById(Long id);
 
     void acceptOrderById(Long id);
+
+    void deleteById(Long id);
 }

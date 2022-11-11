@@ -65,4 +65,11 @@ public class OrderDaoImpl implements OrderDao {
 
         log.info("accept order id: ");
     }
+
+    @Override
+    public void deleteById(Long id) {
+        orderRepository.deleteById(id);
+
+        log.info("DELETE order id: " + id);
+    }
 }
