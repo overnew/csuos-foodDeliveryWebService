@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 @ToString
 public class Order {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     //@Column(nullable = false)
     private LocalDateTime orderTime;

@@ -41,7 +41,7 @@ public class OrderDaoImpl implements OrderDao {
         return orderMapper.orderToDto(savedOrder);
     }
 
-    private Order getOrderEntityById(String id){
+    private Order getOrderEntityById(Long id){
         Optional<Order> optionalOrder = orderRepository.findById(id);
 
         if(optionalOrder.isEmpty()){
@@ -52,7 +52,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public OrderDto findById(String id) {
+    public OrderDto findById(Long id) {
         Order orderEntity = getOrderEntityById(id);
 
         return orderMapper.orderToDto(orderEntity);

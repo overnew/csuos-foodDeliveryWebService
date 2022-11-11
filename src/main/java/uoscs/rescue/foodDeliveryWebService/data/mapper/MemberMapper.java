@@ -5,7 +5,7 @@ import org.mapstruct.factory.Mappers;
 import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 
-@Named("MemberMapper")
+@Named("MemberMappers")
 @Mapper(componentModel ="spring" ,unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {OrderMapper.class})
 public interface MemberMapper {
     MemberMapper INSTANCE = Mappers.getMapper(MemberMapper.class);

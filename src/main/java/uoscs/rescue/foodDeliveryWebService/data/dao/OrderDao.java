@@ -6,5 +6,5 @@ public interface OrderDao {
 
     OrderDto saveWithMemberId(OrderDto orderDto);
 
-    OrderDto findById(String id);
+    OrderDto findById(Long id);
 }

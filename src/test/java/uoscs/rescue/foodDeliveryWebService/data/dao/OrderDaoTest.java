@@ -24,7 +24,6 @@ class OrderDaoTest {
 
         //when
         OrderDto orderDto = OrderDto.builder()
-                .id("banbanmumani")
                 .orderedMemberId(memberDto.getId())
                 .build();
 
@@ -33,6 +32,6 @@ class OrderDaoTest {
 
         //then
         Assertions.assertThat(savedMember.getOrderList().get(0).getId())
-                .isEqualTo(orderDto.getId());
+                .isEqualTo(savedOrder.getId());
     }
 }
