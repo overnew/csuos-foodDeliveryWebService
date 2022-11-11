@@ -12,6 +12,9 @@ import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
 import uoscs.rescue.foodDeliveryWebService.data.mapper.OrderMapper;
 import uoscs.rescue.foodDeliveryWebService.data.repository.MemberRepository;
 import uoscs.rescue.foodDeliveryWebService.data.repository.OrderRepository;
+import uoscs.rescue.foodDeliveryWebService.exception.NoSuchOrderException;
+
+import java.util.Optional;
 
 @Slf4j
 @Repository
@@ -19,8 +22,6 @@ import uoscs.rescue.foodDeliveryWebService.data.repository.OrderRepository;
 public class OrderDaoImpl implements OrderDao {
     @Autowired
     private final OrderRepository orderRepository;
-    @Autowired
-    private final MemberRepository memberRepository;
 
     @Autowired
     private final MemberDao memberDao;
@@ -38,5 +39,22 @@ public class OrderDaoImpl implements OrderDao {
         log.info("save order {}", savedOrder);
 
         return orderMapper.orderToDto(savedOrder);
+    }
+
+    private Order getOrderEntityById(String id){
+        Optional<Order> optionalOrder = orderRepository.findById(id);
+
+        if(optionalOrder.isEmpty()){
+            throw new NoSuchOrderException("no such order id: "+ id);
+        }
+
+        return optionalOrder.get();
+    }
+
+    @Override
+    public OrderDto findById(String id) {
+        Order orderEntity = getOrderEntityById(id);
+
+        return orderMapper.orderToDto(orderEntity);
     }
 }
