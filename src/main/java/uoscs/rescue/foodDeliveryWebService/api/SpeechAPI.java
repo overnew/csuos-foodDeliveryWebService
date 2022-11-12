@@ -10,7 +10,7 @@ import com.google.cloud.speech.v1.SpeechRecognitionAlternative;
 import com.google.cloud.speech.v1.SpeechRecognitionResult;
 import java.util.List;
 
-public class SpeechClient {
+public class SpeechAPI {
 
   public static List<String> syncRecognizeFile(String fileName) throws Exception {
 
