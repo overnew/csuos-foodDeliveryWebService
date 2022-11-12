@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
+import uoscs.rescue.foodDeliveryWebService.data.form.ResponseForm;
 import uoscs.rescue.foodDeliveryWebService.data.form.SessionForm;
 import uoscs.rescue.foodDeliveryWebService.service.MemberService;
 import uoscs.rescue.foodDeliveryWebService.utils.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,8 +39,12 @@ public class SignController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<MemberDto> signup(@RequestBody MemberDto memberDto){
-        return ResponseEntity.ok(memberService.save(memberDto));
+    public ResponseEntity<ResponseForm> signup(@Valid @RequestBody MemberDto memberDto){
+        memberService.save(memberDto);
+
+        ResponseForm responseForm = ResponseForm.builder().success(true).build();
+
+        return ResponseEntity.ok(responseForm);
     }
 
 }
