@@ -8,11 +8,18 @@ import com.google.cloud.speech.v1.SpeechClient;
 import com.google.cloud.speech.v1.SpeechContext;
 import com.google.cloud.speech.v1.SpeechRecognitionAlternative;
 import com.google.cloud.speech.v1.SpeechRecognitionResult;
+import com.google.protobuf.ByteString;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class SpeechAPI {
+class SpeechAPI {
 
-  public static List<String> syncRecognizeFile(String fileName) throws Exception {
+  protected static List<String> syncRecognizeFile(String fileName) throws Exception {
 
     try (SpeechClient speech = SpeechClient.create()) {
 
@@ -20,11 +27,7 @@ public class SpeechAPI {
       byte[] data = Files.readAllBytes(path);
       ByteString audioBytes = ByteString.copyFrom(data);
 
-      SpeechiContext speechContext = SpeechContext.newBuilder();
-      for (String token : TokenData.getAll()) {
-        speechContext.addPhrases(token);
-      }
-      speechContext.build();
+      SpeechContext speechContext = SpeechContext.newBuilder().addAllPhrases(Arrays.asList(TokenData.getAll())).build();
 
       RecognitionConfig config =
           RecognitionConfig.newBuilder()
@@ -44,9 +47,7 @@ public class SpeechAPI {
         String temp = alternative.getTranscript();
         String[] tempArr = temp.split(" ");
 
-        for (String token : tmepArr) {
-          res.add(token);
-        }
+        res.addAll(Arrays.asList(tempArr));
 
         System.out.printf("Transcription: %s%n", alternative.getTranscript());
       }
