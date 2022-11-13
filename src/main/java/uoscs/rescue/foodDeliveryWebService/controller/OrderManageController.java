@@ -8,10 +8,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
+import uoscs.rescue.foodDeliveryWebService.data.form.ResponseForm;
 import uoscs.rescue.foodDeliveryWebService.service.OrderManageService;
 
 import java.util.List;
@@ -36,5 +36,12 @@ public class OrderManageController {
         final Page<OrderDto> page = new PageImpl<>(orderDtoList.subList(start, end), pageable, orderDtoList.size());
 
         return page;
+    }
+
+    @PostMapping("/accept-order")
+    public ResponseEntity<ResponseForm> acceptOrder(@RequestParam Long orderId){
+        orderManageService.acceptOrderById(orderId);
+
+        return ResponseEntity.ok(ResponseForm.builder().success(true).build());
     }
 }

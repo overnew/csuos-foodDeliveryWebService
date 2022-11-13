@@ -23,4 +23,9 @@ public class OrderManageServiceImpl implements OrderManageService {
         return orderDao.getAllOrderList();
     }
 
+    @Override
+    public void acceptOrderById(Long id){
+        orderDao.acceptOrderById(id);
+    }
+
 }
