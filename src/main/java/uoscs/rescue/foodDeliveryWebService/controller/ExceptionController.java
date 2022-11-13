@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import uoscs.rescue.foodDeliveryWebService.data.form.ResponseForm;
 import uoscs.rescue.foodDeliveryWebService.exception.NoSuchMemberException;
+import uoscs.rescue.foodDeliveryWebService.exception.NoSuchOrderException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 @Slf4j
 @RestControllerAdvice
-public class ValidExceptionController {
+public class ExceptionController {
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity<ResponseForm> handleValidMemberException(MethodArgumentNotValidException exception){
@@ -33,6 +34,31 @@ public class ValidExceptionController {
                 .messages(errorMessages)
                 .build();
 
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = NoSuchMemberException.class)
+    public ResponseEntity<ResponseForm> handleNoSuchMemberException(NoSuchMemberException exception){
+        List<String> errorMessages = new ArrayList<>();
+        errorMessages.add(exception.getMessage());
+
+        ResponseForm response = ResponseForm.builder()
+                .success(false)
+                .messages(errorMessages)
+                .build();
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = NoSuchOrderException.class)
+    public ResponseEntity<ResponseForm> handleNoSuchOrderException(NoSuchOrderException exception){
+        List<String> errorMessages = new ArrayList<>();
+        errorMessages.add(exception.getMessage());
+
+        ResponseForm response = ResponseForm.builder()
+                .success(false)
+                .messages(errorMessages)
+                .build();
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
