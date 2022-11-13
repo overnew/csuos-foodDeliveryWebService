@@ -21,7 +21,7 @@ public interface MemberMapper {
     MemberDto memberToDtoWithoutOrders(Member member);*/
 
     @Mappings({
-            @Mapping( source = "orderList",target = "orderDtoList", qualifiedByName = {"OrderMapper","orderToDto"})
+            @Mapping( source = "orderList",target = "orderDtoList", qualifiedByName = {"OrderMapper","orderToOrderDto"})
     })
     MemberDto memberToDto(Member member);
 
