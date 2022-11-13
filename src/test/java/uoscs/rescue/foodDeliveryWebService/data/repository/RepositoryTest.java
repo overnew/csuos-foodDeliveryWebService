@@ -92,7 +92,7 @@ class RepositoryTest {
 
 
         Order orderInRepo = orderRepository.findById(savedOrder1.getId()).get();
-        OrderDto orderDto = orderMapper.orderToDto(orderInRepo);
+        OrderDto orderDto = orderMapper.orderToOrderDto(orderInRepo);
         System.out.println(orderDto);
 
 

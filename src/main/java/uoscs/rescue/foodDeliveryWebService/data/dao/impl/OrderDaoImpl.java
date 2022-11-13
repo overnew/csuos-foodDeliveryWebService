@@ -10,10 +10,10 @@ import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
 import uoscs.rescue.foodDeliveryWebService.data.mapper.OrderMapper;
-import uoscs.rescue.foodDeliveryWebService.data.repository.MemberRepository;
 import uoscs.rescue.foodDeliveryWebService.data.repository.OrderRepository;
 import uoscs.rescue.foodDeliveryWebService.exception.NoSuchOrderException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -38,7 +38,7 @@ public class OrderDaoImpl implements OrderDao {
         Order savedOrder = orderRepository.save(order);
         log.info("save order {}", savedOrder);
 
-        return orderMapper.orderToDto(savedOrder);
+        return orderMapper.orderToOrderDto(savedOrder);
     }
 
     private Order getOrderEntityById(Long id){
@@ -55,7 +55,13 @@ public class OrderDaoImpl implements OrderDao {
     public OrderDto findById(Long id) {
         Order orderEntity = getOrderEntityById(id);
 
-        return orderMapper.orderToDto(orderEntity);
+        return orderMapper.orderToOrderDto(orderEntity);
+    }
+
+    @Override
+    public List<OrderDto> getAllOrderList(){
+        List<OrderDto> orderDtoList = orderMapper.listToDtoList(orderRepository.findAll());
+        return orderDtoList;
     }
 
     @Override
