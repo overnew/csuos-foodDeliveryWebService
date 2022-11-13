@@ -33,6 +33,8 @@ public interface OrderMapper {/*
     default OrderDto orderToDto(Order order){
         return OrderDto.builder().id(order.getId())
                 .accepted(order.isAccepted())
-                .orderedMemberId(order.getOrderedMember().getId()).build();
+                .orderedMemberId(order.getOrderedMember().getId())
+                .orderTime(order.getOrderTime())
+                .build();
     }
 }
