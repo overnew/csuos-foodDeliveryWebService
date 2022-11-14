@@ -2,12 +2,10 @@ package uoscs.rescue.foodDeliveryWebService.data.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Builder
+@Setter
 @Getter
 @Entity(name = "stock")
 @AllArgsConstructor
@@ -17,12 +15,35 @@ public class Stock {
     @Id
     private String id;
 
-    private int steak;
-    private int bacon;
-    private int eggScramble;
-    private int bread;
-    private int salad;
-    private int coffee;
-    private int wine;
-    private int champagne;
+    @OneToOne
+    @JoinColumn//(name = "ingredient_id")
+    private Ingredient steak;
+
+    @OneToOne
+    @JoinColumn//(name = "ingredient_id")
+    private Ingredient bacon;
+
+    @OneToOne
+    @JoinColumn//(name = "ingredient_id")
+    private Ingredient eggScramble;
+
+    @OneToOne
+    @JoinColumn//(name = "ingredient_id")
+    private Ingredient bread;
+
+    @OneToOne
+    @JoinColumn//(name = "ingredient_id")
+    private Ingredient salad;
+
+    @OneToOne
+    @JoinColumn//(name = "ingredient_id")
+    private Ingredient coffee;
+
+    @OneToOne
+    @JoinColumn//(name = "ingredient_id")
+    private Ingredient wine;
+
+    @OneToOne
+    @JoinColumn//(name = "ingredient_id")
+    private Ingredient champagne;
 }
