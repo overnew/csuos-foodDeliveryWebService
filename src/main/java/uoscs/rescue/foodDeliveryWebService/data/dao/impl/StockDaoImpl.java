@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import uoscs.rescue.foodDeliveryWebService.data.dao.StockDao;
 import uoscs.rescue.foodDeliveryWebService.data.dto.StockDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Stock;
+import uoscs.rescue.foodDeliveryWebService.data.form.StockApplyForm;
 import uoscs.rescue.foodDeliveryWebService.data.mapper.StockMapper;
 import uoscs.rescue.foodDeliveryWebService.data.repository.StockRepository;
 
@@ -36,6 +37,17 @@ public class StockDaoImpl implements StockDao {
         Optional<Stock> stock = stockRepository.findById(STOCK_ID);
 
         return stock.get();
+    }
+
+    @Override
+    public void applyIngredientChanges(StockApplyForm applyForm) {
+        Stock stockData = getStockData();
+
+        log.info("stockData: {}", stockData);
+        if(applyForm.getSteak() != 0)
+            stockData.getSteak().addQuantity(applyForm.getSteak());
+
+        log.info("Stock changes Applied, {}", applyForm);
     }
 
     @Override

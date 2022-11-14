@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import uoscs.rescue.foodDeliveryWebService.data.dto.StockDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Ingredient;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Stock;
+import uoscs.rescue.foodDeliveryWebService.data.form.StockApplyForm;
 
 import javax.persistence.EntityManager;
 
@@ -22,6 +23,27 @@ class StockDaoTest {
 
     @Autowired
     private EntityManager em;
+
+    @Test
+    @Transactional
+    void applyStockChange(){
+        //given
+        stockDao.initStock();
+        Stock stock = stockDao.getStockData();
+
+        Ingredient ingredient = Ingredient.builder().id("vm1234").name("스테끼").quantity(0).build();
+        StockApplyForm applyForm = StockApplyForm.builder().steak(10).build();
+
+        //when
+        stock.setSteak(ingredient);
+
+        stockDao.applyIngredientChanges(applyForm);
+
+        //then
+        stock = stockDao.getStockData();
+        System.out.println(stock.getSteak());
+        Assertions.assertThat(stock.getSteak().getQuantity()).isEqualTo(10);
+    }
 
     @Test
     void getInitStockData(){
