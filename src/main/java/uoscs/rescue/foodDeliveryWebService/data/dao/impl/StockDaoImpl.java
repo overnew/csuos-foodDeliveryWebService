@@ -29,18 +29,10 @@ public class StockDaoImpl implements StockDao {
         stockRepository.save(
                 Stock.builder()
                         .id(STOCK_ID)
-                        .bacon(0)
-                        .bread(0)
-                        .champagne(0)
-                        .coffee(0)
-                        .eggScramble(0)
-                        .salad(0)
-                        .wine(0)
-                        .steak(0)
                         .build());
     }
 
-    private Stock getStockData(){
+    public Stock getStockData(){
         Optional<Stock> stock = stockRepository.findById(STOCK_ID);
 
         return stock.get();
@@ -50,8 +42,5 @@ public class StockDaoImpl implements StockDao {
     public StockDto getStock(){
         return stockMapper.toDto(getStockData());
     }
-
-
-
 
 }
