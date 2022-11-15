@@ -6,40 +6,40 @@ export const LoginContext = React.createContext();
 
 const SigninView = () => {
     //input field&state
-    const [state, setState] = useState({
+    const [info, setState] = useState({
         id: "",
-        pw: "",
+        password: "",
     });
     const navigate = useNavigate();
 
     //id data input handler
     const handleInputId = (e) => {
         setState({
-            ...state,
+            ...info,
             id: e.target.value,
         });
     }
     //pw data input handler
     const handleInputPw = (e) => {
         setState({
-            ...state,
+            ...info,
             pw:e.target.value,
         });
     }
 
     return (
-        <LoginContext.Provider value={state}>
+        <LoginContext.Provider value={info}>
             <div className="Signin">
                 <div className="idInput">
                     <label htmlFor="input_id">ID  </label>
                     <input
-                        type='text' name='input_id' value={state.id} onChange={handleInputId}
+                        type='text' name='input_id' value={info.id} onChange={handleInputId}
                     />
                 </div>
                 <div className="pwInput">
                     <label htmlFor="input_pw">PW  </label>
                     <input
-                        type='password' name='input_pw' value={state.pw} onChange={handleInputPw}
+                        type='password' name='input_pw' value={info.pw} onChange={handleInputPw}
                     />
                 </div>
                 <Signin />

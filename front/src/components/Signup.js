@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { signupContext } from "../View/SignupView";
-import axios from "axios";
+
 
 
 
@@ -10,55 +10,35 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const SignupClick = async () => {
-        if (info.id < 1) {
-            alert("id empty");
-        }
-        if (info.pw < 1) {
-            alert('pw empty');
-        }
-        // if (info.name < 2) {
-        //     alert('name is empty');
-        // }
-        // if (info.addr < 2) {
-        //     alert('address is empty');
-        // }
-        const userData = {
-            id: info.id,
-            password: info.password,
-        };
-        // await axios({
-        //     method: 'POST',
-        //     url: 'http://localhost:8080/sign/signup',
-        //     data: userData,
-        //     withCredentials:true,
-        // }).then((res) => {
-        //     console.log(res);
-        //     alert('success register');
-        //     navigate('/')
-        // }).catch((e) => {
-        //     console.log(e);
-        //     alert('failed register');
-        //     console.log(userData);
-        //     navigate("/signup");
-            
-        // });
+        const idRegExp = /^[a-zA-Z][0-9a-zA-Z]{5,11}$/;
+        const pwRegExp = /^[a-zA-Z][0-9a-zA-Z]{5,11}$/;
         
-        await fetch("/sign/signup", {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-                userData,
-            },
-            body: JSON.stringify({ userData })
-        }).then((res) => {
-            console.log(res);
-            console.log("ture");
-            console.log(userData);
-        }).catch((err) => {
-            console.log(err);
-            console.log("false");
-            console.log(userData);
-        })
+        if (!idRegExp.test(info.id)) {
+            alert("ID는 영문과 숫자 포함 6-12자리 이내로 입력해주세요.");
+        } else if (!pwRegExp.test(info.password)) {
+            alert("Password는 영문과 숫자 포함 6-12자리 이내로 입력해주세요.");
+        } else {
+            const userData = {
+                id: info.id,
+                password: info.password,
+            };
+        
+            await fetch("/sign/signup", {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                    userData,
+                },
+                body: JSON.stringify({ userData })
+            }).then((res) => {
+                navigate("/signin");
+            }).catch((err) => {
+                console.log(err);
+                console.log("false");
+                console.log(userData);
+            
+            })
+        }
     }
     return (
         <div>

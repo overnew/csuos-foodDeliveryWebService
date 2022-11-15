@@ -25,37 +25,39 @@ function App() {
 
   const dataId = useRef(0);
 
-  const getUserData = async () => {
-    const res = axios.get('https://jsonplaceholder.typicode.com/users');
+  // const getUserData = async () => {
+  //   const res = axios.get('https://jsonplaceholder.typicode.com/users');
     
-    const initData = res.map((it) => {
-      return ({
-        id: it.email,
-        pw: it.phone,
-        name: it.username,
-        addr: it.website,
-        //grade: grade,
-      });
-    });
-    dispatchUser({ type: 'USER', data: initData });
-  }
+  //   const initData = res.map((it) => {
+  //     return ({
+  //       id: it.email,
+  //       password: it.phone,
+  //       name: it.username,
+  //       addr: it.website,
+  //       //grade: grade,
+  //     });
+  //   });
+  //   dispatchUser({ type: 'USER', data: initData });
+  // }
 
-  const getOrderData = async() => {
-    const res = await fetch
-      ('https://jsonplaceholder.typicode.com/comments')
-      .then((res) => res.json());
-    const initData = res.slice(0, 20).map((it) => {
-      return {
-        author: it.email,
-        text: it.body,
-        id: dataId.current++,
-      }
-    });
-    return initData;
-  }
+  // const getOrderData = async() => {
+  //   const res = await fetch
+  //     ('/order/item')
+  //     .then((res) => res.json());
+  //   const initData = res.slice(0, 20).map((it) => {
+  //     return {
+  //       id: it.id,
+  //       OrderTime: it.OrderTime,
+  //       orderedMemberId: it.orderedMemberId,
+  //     }
+  //   });
+  //   return initData;
+  // }
+  
   
   useEffect(() => {
-    setOrder(getOrderData());
+    // setOrder(getOrderData());
+    
   }, []);
   return (
     <div className="App">

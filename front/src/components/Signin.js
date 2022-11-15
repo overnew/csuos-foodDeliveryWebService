@@ -7,25 +7,40 @@ import { LoginContext } from "../View/SigninView";
 const Signin = () => {
     const info = useContext(LoginContext);
     const navigate = useNavigate();
-    const SigninClick = () => {
+    const SigninClick = async () => {
+        
+        
         if (info.id < 1) {
-            alert("id empty");
+            alert("아이디를 입력하세요");
+        } else if (info.pw < 1) {
+            alert("비밀번호를 입력하세요");
+        } else {
+            const userData = {
+                id: info.id,
+                password: info.password,
+            };
+            await fetch("/sign/signin", {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                    userData,
+                },
+                body: JSON.stringify({ userData })
+            }).then((res) => {
+                res = JSON.stringify(res);
+                if (res.body === "fail") {
+                    alert("존재하지 않는 회원입니다.");
+                    navigate("/signin");
+                } else if (res.body === `login success id = ${info.id}`) {
+                    navigate("/main");
+                }
+            }).catch((err) => {
+                console.log(err);
+                console.log("false");
+                console.log(userData);
+        
+            })
         }
-        if (info.pw < 1) {
-            alert('pw empty');
-        }
-        axios.post('/proxy/sign/signin', {
-            id: info.id,
-            password: info.password,
-        }).then((res) => {
-            console.log(res);
-        }).catch((e) => {
-            console.log(e);
-            console.log(e.response.status);
-            if (e.response.status === 404) {
-                navigate("/main");
-            }
-        });
     }
     return (
         <div>
