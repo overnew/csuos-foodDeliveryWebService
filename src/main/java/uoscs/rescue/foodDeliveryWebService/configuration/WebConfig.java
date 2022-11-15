@@ -8,20 +8,21 @@ import uoscs.rescue.foodDeliveryWebService.interceptor.SignCheckInterceptor;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
+/*
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SignCheckInterceptor())
                 .order(1)
-                .addPathPatterns("/**")
+                //.addPathPatterns("/**")
                 .excludePathPatterns(
-                        "/", "/sign/signin", "/sign/signup",
-                        "/order/make-order",
-                        "/css/**", "/*.ico", "/error"
+                        "/**"
+                        //"/", "/sign/signin", "/sign/signup",
+                        //"/order/make-order",
+                        //"/css/**", "/*.ico", "/error"
                 );
 
         registry.addInterceptor(new GeneralAuthorityCheckInterceptor())
-                .order(2)
-                .addPathPatterns( "/member/get-my-data");
-    }
+                .order(2);
+                //.addPathPatterns( "/member/get-my-data");
+    }*/
 }
