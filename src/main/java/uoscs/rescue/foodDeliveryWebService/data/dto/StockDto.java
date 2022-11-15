@@ -9,12 +9,12 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class StockDto {
-    private int steak;
-    private int bacon;
-    private int eggScramble;
-    private int bread;
-    private int salad;
-    private int coffee;
-    private int wine;
-    private int champagne;
+    private IngredientDto steak;
+    private IngredientDto bacon;
+    private IngredientDto eggScramble;
+    private IngredientDto bread;
+    private IngredientDto salad;
+    private IngredientDto coffee;
+    private IngredientDto wine;
+    private IngredientDto champagne;
 }

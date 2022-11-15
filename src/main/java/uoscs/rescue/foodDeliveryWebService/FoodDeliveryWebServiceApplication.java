@@ -17,8 +17,7 @@ import java.util.Optional;
 @SpringBootApplication
 public class FoodDeliveryWebServiceApplication implements CommandLineRunner {
 
-	@Autowired
-	private StockDao stockDao;
+	//@Autowired private StockDao stockDao;
 
 	public static void main(String[] args) {
 		SpringApplication.run(FoodDeliveryWebServiceApplication.class, args);
