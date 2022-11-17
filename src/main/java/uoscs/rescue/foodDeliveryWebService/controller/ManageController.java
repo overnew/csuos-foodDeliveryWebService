@@ -11,8 +11,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
+import uoscs.rescue.foodDeliveryWebService.data.dto.StockDto;
+import uoscs.rescue.foodDeliveryWebService.data.form.IngredientChangeForm;
 import uoscs.rescue.foodDeliveryWebService.data.form.ResponseForm;
 import uoscs.rescue.foodDeliveryWebService.service.ManageService;
+import uoscs.rescue.foodDeliveryWebService.service.StockService;
 
 import java.util.List;
 
@@ -23,13 +26,15 @@ import java.util.List;
 public class ManageController {
 
     @Autowired
-    private final ManageService orderManageService;
+    private final ManageService manageService;
+    @Autowired
+    private final StockService stockService;
 
     @GetMapping("/all-orders")
     public Page<OrderDto> getAllOrderPageList(
             @PageableDefault(size = 5, sort="id",direction = Sort.Direction.DESC) Pageable pageable) {
 
-        List<OrderDto> orderDtoList = orderManageService.getAllOrderDtoList();
+        List<OrderDto> orderDtoList = manageService.getAllOrderDtoList();
 
         final int start = (int)pageable.getOffset();
         final int end = Math.min((start + pageable.getPageSize()), orderDtoList.size());
@@ -40,8 +45,20 @@ public class ManageController {
 
     @PostMapping("/accept-order")
     public ResponseEntity<ResponseForm> acceptOrder(@RequestParam Long orderId){
-        orderManageService.acceptOrderById(orderId);
+        manageService.acceptOrderById(orderId);
 
         return ResponseEntity.ok(ResponseForm.builder().success(true).build());
+    }
+
+    @GetMapping("/stock")
+    public ResponseEntity<StockDto> getStockDtoData(){
+        return ResponseEntity.ok(stockService.getStockData());
+    }
+
+    @PostMapping("/stock")
+    public ResponseEntity<StockDto> getAppliedStockDtoData(@RequestBody IngredientChangeForm changeForm){
+        stockService.applyIngredientChangeForm(changeForm);
+
+        return ResponseEntity.ok(stockService.getStockData());
     }
 }

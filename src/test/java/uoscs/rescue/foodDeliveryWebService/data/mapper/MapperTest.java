@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
 import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
+import uoscs.rescue.foodDeliveryWebService.data.dto.StockDto;
+import uoscs.rescue.foodDeliveryWebService.data.entity.Ingredient;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
+import uoscs.rescue.foodDeliveryWebService.data.entity.Stock;
 import uoscs.rescue.foodDeliveryWebService.data.enums.Grade;
 
 import java.util.ArrayList;
@@ -23,6 +26,10 @@ class MapperTest {
     private MemberMapper memberMapper;
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private IngredientMapper ingredientMapper;
+    @Autowired
+    private StockMapper stockMapper;
 
 /*
     @Test
@@ -38,8 +45,22 @@ class MapperTest {
     }*/
 
     @Test
+    void stockWithIngredient(){
+        //given
+        Ingredient ingredientBread = Ingredient.builder().name("붕어뽱").quantity(120).build();
+
+        //when
+        Stock stock = Stock.builder().id("sldlstkf").bread(ingredientBread).build();
+
+        //then
+        StockDto stockDto = stockMapper.toDto(stock);
+        System.out.println(stockDto);
+        assertThat(stockDto.getBread().getQuantity()).isEqualTo(ingredientBread.getQuantity());
+    }
+
+    @Test
     void enumMappingTest(){
-        //givne
+        //given
         Member member = Member.builder().id("10").grade(Grade.GENERAL).build();
 
         //when

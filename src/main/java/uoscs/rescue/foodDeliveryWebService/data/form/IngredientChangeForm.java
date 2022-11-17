@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class StockApplyForm {
+public class IngredientChangeForm {
     private int steak;
     private int bacon;
     private int eggScramble;
