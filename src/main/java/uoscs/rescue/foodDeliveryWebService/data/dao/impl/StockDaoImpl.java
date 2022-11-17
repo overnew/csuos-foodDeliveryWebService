@@ -43,11 +43,28 @@ public class StockDaoImpl implements StockDao {
     public void applyIngredientChanges(StockApplyForm applyForm) {
         Stock stockData = getStockData();
 
-        log.info("stockData: {}", stockData);
-        if(applyForm.getSteak() != 0)
-            stockData.getSteak().addQuantity(applyForm.getSteak());
+        applyIngredientChangeToStock(applyForm, stockData);
 
         log.info("Stock changes Applied, {}", applyForm);
+    }
+
+    private void applyIngredientChangeToStock(StockApplyForm applyForm, Stock stockData) {
+        if(applyForm.getSteak() != 0)
+            stockData.getSteak().addQuantity(applyForm.getSteak());
+        if(applyForm.getBacon() != 0)
+            stockData.getBacon().addQuantity(applyForm.getBacon());
+        if(applyForm.getBread() != 0)
+            stockData.getBread().addQuantity(applyForm.getBread());
+        if(applyForm.getChampagne() != 0)
+            stockData.getChampagne().addQuantity(applyForm.getChampagne());
+        if(applyForm.getCoffee() != 0)
+            stockData.getCoffee().addQuantity(applyForm.getCoffee());
+        if(applyForm.getSalad() != 0)
+            stockData.getSalad().addQuantity(applyForm.getSalad());
+        if(applyForm.getEggScramble() != 0)
+            stockData.getEggScramble().addQuantity(applyForm.getEggScramble());
+        if(applyForm.getWine() != 0)
+            stockData.getWine().addQuantity(applyForm.getWine());
     }
 
     @Override

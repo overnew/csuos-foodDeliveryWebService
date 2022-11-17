@@ -7,7 +7,7 @@ import uoscs.rescue.foodDeliveryWebService.data.dto.StockDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Stock;
 
 @Named("StockMapper")
-@Mapper(componentModel ="spring" ,unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel ="spring" ,unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {IngredientMapper.class})
 public interface StockMapper {
     StockDto toDto(Stock stock);
     Stock dtoToStock(StockDto stockDto);
