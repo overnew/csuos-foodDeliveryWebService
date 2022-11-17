@@ -12,6 +12,7 @@ import uoscs.rescue.foodDeliveryWebService.data.form.IngredientChangeForm;
 import uoscs.rescue.foodDeliveryWebService.data.mapper.StockMapper;
 import uoscs.rescue.foodDeliveryWebService.data.repository.IngredientRepository;
 import uoscs.rescue.foodDeliveryWebService.data.repository.StockRepository;
+import uoscs.rescue.foodDeliveryWebService.exception.StockValueException;
 
 import java.util.Optional;
 
@@ -85,22 +86,39 @@ public class StockDaoImpl implements StockDao {
     }
 
     private void applyIngredientChangeToStock(IngredientChangeForm applyForm, Stock stockData) {
-        if(applyForm.getSteak() != 0)
+
+        if(applyForm.getSteak() != 0 && checkIngredientValueNotMinus(applyForm.getSteak(), stockData.getSteak().getQuantity()))
             stockData.getSteak().addQuantity(applyForm.getSteak());
-        if(applyForm.getBacon() != 0)
+
+        if(applyForm.getBacon() != 0 && checkIngredientValueNotMinus(applyForm.getBacon(), stockData.getBacon().getQuantity()))
             stockData.getBacon().addQuantity(applyForm.getBacon());
-        if(applyForm.getBread() != 0)
+
+        if(applyForm.getBread() != 0  && checkIngredientValueNotMinus(applyForm.getBread(), stockData.getBread().getQuantity()))
             stockData.getBread().addQuantity(applyForm.getBread());
-        if(applyForm.getChampagne() != 0)
+
+        if(applyForm.getChampagne() != 0 && checkIngredientValueNotMinus(applyForm.getChampagne(), stockData.getChampagne().getQuantity()))
             stockData.getChampagne().addQuantity(applyForm.getChampagne());
-        if(applyForm.getCoffee() != 0)
+
+        if(applyForm.getCoffee() != 0 && checkIngredientValueNotMinus(applyForm.getCoffee(), stockData.getCoffee().getQuantity()))
             stockData.getCoffee().addQuantity(applyForm.getCoffee());
-        if(applyForm.getSalad() != 0)
+
+        if(applyForm.getSalad() != 0 && checkIngredientValueNotMinus(applyForm.getSalad(), stockData.getSalad().getQuantity()))
             stockData.getSalad().addQuantity(applyForm.getSalad());
-        if(applyForm.getEggScramble() != 0)
+
+        if(applyForm.getEggScramble() != 0 && checkIngredientValueNotMinus(applyForm.getEggScramble(), stockData.getEggScramble().getQuantity()))
             stockData.getEggScramble().addQuantity(applyForm.getEggScramble());
-        if(applyForm.getWine() != 0)
+
+        if(applyForm.getWine() != 0 && checkIngredientValueNotMinus(applyForm.getWine(), stockData.getWine().getQuantity()))
             stockData.getWine().addQuantity(applyForm.getWine());
+    }
+
+    private boolean checkIngredientValueNotMinus(final int addedValue, final int originValue){
+        //예외 터지면 transaction 취소로 모두 rollback
+
+        if( originValue + addedValue <0 )
+            throw new StockValueException("재료는 음수가 될 수 없음");
+
+        return true;
     }
 
     @Override
