@@ -1,6 +1,21 @@
 package uoscs.rescue.foodDeliveryWebService.api;
 
+import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
+import uoscs.rescue.foodDeliveryWebService.exception.APIException;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class STTService {
-    // 음성파일을 포함한 음성 분석 요청을 api 패키지에서 최초로 받는 부분.
-    // SpeechAPI를 통해 string[]을 받고 TokenParsing을 호출해 주문내용 파악 후 Order 객체 형태로 리턴한다.
+    public List<Order> STTService(String fileName) {
+
+        List<String> res;
+        try {
+            res = SpeechAPI.syncRecognizeFile(fileName);
+        } catch (Exception e) {
+            throw new APIException("Speech Client creation failed");
+        }
+
+        return new ArrayList<Order>(TokenParsing.parsingOrder(res));
+    }
 }

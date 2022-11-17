@@ -27,7 +27,7 @@ class SpeechAPI {
       byte[] data = Files.readAllBytes(path);
       ByteString audioBytes = ByteString.copyFrom(data);
 
-      SpeechContext speechContext = SpeechContext.newBuilder().addAllPhrases(Arrays.asList(TokenData.getAll())).build();
+      SpeechContext speechContext = SpeechContext.newBuilder().addAllPhrases(TokenData.getAllKey()).build();
 
       RecognitionConfig config =
           RecognitionConfig.newBuilder()

@@ -1,29 +1,51 @@
 package uoscs.rescue.foodDeliveryWebService.api;
 
+import uoscs.rescue.foodDeliveryWebService.data.enums.DinnerStyle;
+import uoscs.rescue.foodDeliveryWebService.data.enums.DinnerType;
+
+import java.util.*;
+
 public class TokenData {
-    private static final String[] dinner = {"발렌타인", "프렌치", "잉글리시", "샴페인"};
-    private static final String[] style = {"심플", "그랜드", "디럭스"};
-    private static final String[] order = {"하나", "한개", "둘", "두개", "셋", "세개", "넷", "네개", "다섯", "여섯", "일곱", "여덜", "아홉", "열"};
+    private static final Map<String, DinnerType> type = new HashMap<>() {{
+        put("발렌타인", DinnerType.VALENTINE);
+        put("프렌치", DinnerType.FRENCH);
+        put("잉글리시", DinnerType.ENGLISH);
+        put("샴페인", DinnerType.CHAMPAGNE);
+    }};
+    private static final Map<String, DinnerStyle> style = new HashMap<>() {{
+        put("심플", DinnerStyle.SIMPLE);
+        put("그랜드", DinnerStyle.GRAND);
+        put("디럭스", DinnerStyle.DELUXE);
+    }};
+    private static final Map<String, Integer> number = new HashMap<>() {{
+        put("하나", 1); put("한개", 1);
+        put("둘", 2); put("두개", 2);
+        put("셋", 3); put("세개", 3);
+        put("넷", 4); put("네개", 4);
+        put("다섯", 5);
+        put("여섯", 6);
+        put("일곱", 7);
+        put("여덟", 8);
+        put("아홉", 9);
+        put("열", 10);
+    }};
 
-    public String[] getDinner() {
-        return dinner;
+    public static Map<String, DinnerType> getType() {
+        return type;
     }
-
-    public String[] getStyle() {
+    public static Map<String, DinnerStyle> getStyle() {
         return style;
     }
 
-    public String[] getOrder() {
-        return order;
+    public static Map<String, Integer> getNumber() {
+        return number;
     }
 
-    public static String[] getAll() {
-        int resLength = dinner.length + style.length + order.length;
-        String[] res = new String[resLength];
-        
-        System.arraycopy(dinner, 0, res, 0, dinner.length);
-        System.arraycopy(style, 0, res, dinner.length, style.length);
-        System.arraycopy(order, 0, res, dinner.length + style.length, order.length);
+    public static List<String> getAllKey() {
+        List<String> res = new ArrayList<>();
+        res.addAll(new ArrayList<>(type.keySet()));
+        res.addAll(new ArrayList<>(style.keySet()));
+        res.addAll(new ArrayList<>(number.keySet()));
 
         return res;
     }
