@@ -6,15 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uoscs.rescue.foodDeliveryWebService.data.dao.OrderDao;
 import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
-import uoscs.rescue.foodDeliveryWebService.service.OrderManageService;
-import uoscs.rescue.foodDeliveryWebService.service.OrderService;
+import uoscs.rescue.foodDeliveryWebService.service.ManageService;
 
 import java.util.List;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class OrderManageServiceImpl implements OrderManageService {
+public class ManageServiceImpl implements ManageService {
     @Autowired
     private final OrderDao orderDao;
 

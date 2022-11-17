@@ -12,18 +12,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 import uoscs.rescue.foodDeliveryWebService.data.form.ResponseForm;
-import uoscs.rescue.foodDeliveryWebService.service.OrderManageService;
+import uoscs.rescue.foodDeliveryWebService.service.ManageService;
 
 import java.util.List;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/order-manage")
-public class OrderManageController {
+@RequestMapping("/manage")
+public class ManageController {
 
     @Autowired
-    private final OrderManageService orderManageService;
+    private final ManageService orderManageService;
 
     @GetMapping("/all-orders")
     public Page<OrderDto> getAllOrderPageList(
