@@ -12,6 +12,7 @@ import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Stock;
 import uoscs.rescue.foodDeliveryWebService.data.enums.Grade;
+import uoscs.rescue.foodDeliveryWebService.data.form.IngredientChangeForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +88,14 @@ class MapperTest {
         assertThat(orderDto.getId()).isEqualTo(order.getId());
         assertThat(orderDto.getOrderedMemberId()).isEqualTo("12");
         System.out.println(orderDto);
+    }
+
+    @Test
+    void orderToIngredientChangeForm(){
+        Order order = Order.builder().bread(10).coffee(1).bacon(2).build();
+        IngredientChangeForm ingredientChangeForm = orderMapper.orderToChangeForm(order);
+
+        System.out.println(ingredientChangeForm);
     }
 
 }

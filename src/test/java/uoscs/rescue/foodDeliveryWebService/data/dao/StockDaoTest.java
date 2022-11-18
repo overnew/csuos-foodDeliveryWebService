@@ -23,6 +23,27 @@ class StockDaoTest {
 
     @Test
     @Transactional
+    void consumeStockByOrderData(){
+        //given
+        //stockDao.initStock();
+        Stock stock = stockDao.getStockData();
+
+        IngredientChangeForm applyForm = IngredientChangeForm.builder().steak(10).bread(10).build();
+        IngredientChangeForm consumeForm = IngredientChangeForm.builder().steak(5).bread(10).build();
+
+        //when
+        stockDao.applyIngredientChanges(applyForm);
+        stockDao.consumeByIngredientChangeForm(consumeForm);
+
+        //then
+        stock = stockDao.getStockData();
+        System.out.println(stock.getSteak());
+        Assertions.assertThat(stock.getSteak().getQuantity()).isEqualTo(5);
+        Assertions.assertThat(stock.getBread().getQuantity()).isEqualTo(0);
+    }
+
+    @Test
+    @Transactional
     void applyStockChange(){
         //given
         //stockDao.initStock();

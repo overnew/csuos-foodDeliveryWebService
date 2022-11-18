@@ -77,6 +77,22 @@ public class StockDaoImpl implements StockDao {
     }
 
     @Override
+    public void consumeByIngredientChangeForm(IngredientChangeForm changeForm){
+        IngredientChangeForm consumeForm = IngredientChangeForm.builder()
+                .bacon(changeForm.getBacon() * -1)
+                .bread(changeForm.getBread() * -1)
+                .champagne(changeForm.getChampagne() * -1)
+                .coffee(changeForm.getCoffee() * -1)
+                .eggScramble(changeForm.getEggScramble() * -1)
+                .salad(changeForm.getSalad() * -1)
+                .steak(changeForm.getSteak() * -1)
+                .wine(changeForm.getWine() * -1)
+                .build();
+
+        applyIngredientChanges(consumeForm);
+    }
+
+    @Override
     public void applyIngredientChanges(IngredientChangeForm changeForm) {
         Stock stockData = getStockData();
 

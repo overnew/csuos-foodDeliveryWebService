@@ -4,6 +4,7 @@ import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
+import uoscs.rescue.foodDeliveryWebService.data.form.IngredientChangeForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,4 +57,6 @@ public interface OrderMapper {/*
 
         return list;
     }
+
+    IngredientChangeForm orderToChangeForm(Order order);
 }

@@ -11,5 +11,6 @@ public interface StockDao {
     StockDto getStockDtoData();
     Stock getStockData();
 
+    void consumeByIngredientChangeForm(IngredientChangeForm changeForm);
     void applyIngredientChanges(IngredientChangeForm applyForm);
 }
