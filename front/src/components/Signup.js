@@ -18,23 +18,29 @@ const Signup = () => {
         } else if (!pwRegExp.test(info.password)) {
             alert("Password는 영문과 숫자 포함 6-12자리 이내로 입력해주세요.");
         } else {
-            const userData = {
-                id: info.id,
-                password: info.password,
+            var userData = {
+                "id": "",
+                "password": "",
+                "personalInfoAgreement": false
             };
+            userData.id = info.id;
+            userData.password = info.password;
+
         
             await fetch("/sign/signup", {
-                method: 'post',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    userData,
+                    userData
                 },
-                body: JSON.stringify({ userData })
+                body: JSON.stringify(userData)
             }).then((res) => {
+                console.log(res);
                 navigate("/signin");
             }).catch((err) => {
                 console.log(err);
                 console.log("false");
+                console.log(userData);
                 console.log(userData);
             
             })
