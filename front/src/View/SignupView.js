@@ -16,7 +16,6 @@ const SignupView = () => {
             ...info,
             id: e.target.value,
         });
-        
     }
     //pw data input handler
     const handleInputPw = (e) => {
@@ -24,7 +23,6 @@ const SignupView = () => {
             ...info,
             password:e.target.value,
         });
-        
     }
     return (
         <div className="signup">
