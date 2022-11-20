@@ -9,7 +9,9 @@ import com.google.cloud.speech.v1.SpeechContext;
 import com.google.cloud.speech.v1.SpeechRecognitionAlternative;
 import com.google.cloud.speech.v1.SpeechRecognitionResult;
 import com.google.protobuf.ByteString;
+import lombok.extern.slf4j.Slf4j;
 
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,7 +21,7 @@ import java.util.List;
 
 class SpeechAPI {
 
-  protected static List<String> syncRecognizeFile(String fileName) throws Exception {
+  protected static List<String> syncRecognizeFile(URI fileName) throws Exception {
 
     try (SpeechClient speech = SpeechClient.create()) {
 
@@ -31,9 +33,9 @@ class SpeechAPI {
 
       RecognitionConfig config =
           RecognitionConfig.newBuilder()
-              .setEncoding(AudioEncoding.LINEAR16)
+              .setEncoding(AudioEncoding.FLAC)
               .setLanguageCode("ko-KR")
-              .setSampleRateHertz(16000)
+              .setSampleRateHertz(44100)
               .addSpeechContexts(speechContext)
               .build();
       RecognitionAudio audio = RecognitionAudio.newBuilder().setContent(audioBytes).build();
@@ -41,15 +43,13 @@ class SpeechAPI {
       RecognizeResponse response = speech.recognize(config, audio);
       List<SpeechRecognitionResult> results = response.getResultsList();
 
-      List<String> res = new ArrayList();
+      List<String> res = new ArrayList<>();
       for (SpeechRecognitionResult result : results) {
         SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
         String temp = alternative.getTranscript();
         String[] tempArr = temp.split(" ");
 
         res.addAll(Arrays.asList(tempArr));
-
-        System.out.printf("Transcription: %s%n", alternative.getTranscript());
       }
 
       return res;

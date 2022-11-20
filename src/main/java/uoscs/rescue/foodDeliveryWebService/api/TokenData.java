@@ -9,7 +9,7 @@ public class TokenData {
     private static final Map<String, DinnerType> type = new HashMap<>() {{
         put("발렌타인", DinnerType.VALENTINE);
         put("프렌치", DinnerType.FRENCH);
-        put("잉글리시", DinnerType.ENGLISH);
+        put("잉글리쉬", DinnerType.ENGLISH);
         put("샴페인", DinnerType.CHAMPAGNE);
     }};
     private static final Map<String, DinnerStyle> style = new HashMap<>() {{

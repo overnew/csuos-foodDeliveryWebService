@@ -34,11 +34,13 @@ class TokenParsing {
                         point = 1;
                     }
                     else {
+                        if (order.getDinnerStyle() == null) order.setDinnerStyle(DinnerStyle.SIMPLE);
                         for (int i = 0; i < num; i ++) {
                             orders.add(order);
                         }
-                        point = 0;
+                        num = 1;
                         order = new Order();
+                        order.setDinnerType(type.get(dinner_type));
                     }
                 }
             }
@@ -53,11 +55,19 @@ class TokenParsing {
 
                 for (String dinner_number: number.keySet()) {
                     if (word.contains(dinner_number)) {
-                        num += number.get(dinner_number);
+                        num = num + number.get(dinner_number) - 1;
                     }
                 }
             }
         }
+
+        if (point == 1) {
+            if (order.getDinnerStyle() == null) order.setDinnerStyle(DinnerStyle.SIMPLE);
+            for (int i = 0; i < num; i ++) {
+                orders.add(order);
+            }
+        }
+
         return orders;
     }
 }
