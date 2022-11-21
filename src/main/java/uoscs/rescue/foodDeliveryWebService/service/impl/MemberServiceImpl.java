@@ -24,6 +24,17 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public MemberDto saveWithCheckId(MemberDto memberDto) {
+        try{
+            memberDao.findById(memberDto.getId());
+        }catch (NoSuchMemberException ex){  //매칭되는 아이디가 없는 경우
+            return memberDao.save(memberDto);
+        }
+
+        return null;
+    }
+
+    @Override
     public boolean checkIdAndPassword(String id, String password) {
         MemberDto memberDto;
 

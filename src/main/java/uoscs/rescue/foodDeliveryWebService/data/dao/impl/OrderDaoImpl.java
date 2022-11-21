@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import uoscs.rescue.foodDeliveryWebService.data.dao.MemberDao;
 import uoscs.rescue.foodDeliveryWebService.data.dao.OrderDao;
+import uoscs.rescue.foodDeliveryWebService.data.dao.StockDao;
 import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
@@ -25,6 +26,9 @@ public class OrderDaoImpl implements OrderDao {
 
     @Autowired
     private final MemberDao memberDao;
+    @Autowired
+    private final StockDao stockDao;
+
     @Autowired
     private final OrderMapper orderMapper;
 
@@ -68,6 +72,8 @@ public class OrderDaoImpl implements OrderDao {
     public void acceptOrderById(Long id) {
         Order order = getOrderEntityById(id);
         order.setAccepted(true);
+
+        stockDao.consumeByIngredientChangeForm(orderMapper.orderToChangeForm(order));
 
         log.info("accept order id: ");
     }

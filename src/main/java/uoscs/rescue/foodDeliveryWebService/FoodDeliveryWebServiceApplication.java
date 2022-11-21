@@ -17,7 +17,7 @@ import java.util.Optional;
 @SpringBootApplication
 public class FoodDeliveryWebServiceApplication implements CommandLineRunner {
 
-	//@Autowired private StockDao stockDao;
+	@Autowired private StockDao stockDao;
 
 	public static void main(String[] args) {
 		SpringApplication.run(FoodDeliveryWebServiceApplication.class, args);
@@ -25,7 +25,7 @@ public class FoodDeliveryWebServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//stockDao.initStock();
+		stockDao.initStock();
 		log.info("Server init complete");
 	}
 }

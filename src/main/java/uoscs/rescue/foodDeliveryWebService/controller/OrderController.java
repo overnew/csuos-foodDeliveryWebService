@@ -1,5 +1,8 @@
 package uoscs.rescue.foodDeliveryWebService.controller;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,14 @@ public class OrderController {
     @Autowired
     private final OrderService orderService;
 
+    @ApiOperation(
+            value = "주문"
+            ,notes = "로그인 상태에서 쿠기에 세션값을 보내서 진행\nOrderDto 채워서 보내기"
+    )
+    @ApiResponses({
+            @ApiResponse(code = 200, message ="주문 성공"),
+            @ApiResponse(code= 400, message = "주문 실패")
+    })
     @PostMapping("/make-order")
     public ResponseEntity<ResponseForm> makeOrder(@Valid @RequestBody OrderDto orderDto){
         OrderDto savedOrderDto = orderService.makeOrder(orderDto);
