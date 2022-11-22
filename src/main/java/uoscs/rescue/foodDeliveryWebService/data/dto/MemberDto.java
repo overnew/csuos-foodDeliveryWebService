@@ -27,6 +27,8 @@ public class MemberDto {
     @NotNull
     private boolean personalInfoAgreement;
 
+    private String creditCard;
+
     @Null
     private List<OrderDto> orderDtoList;
 

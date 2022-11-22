@@ -27,6 +27,8 @@ public class Member {
 
     private boolean personalInfoAgreement;
 
+    private String creditCard;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderedMember", fetch = FetchType.EAGER)
     //@JoinColumn(name = "order_id")
     @ToString.Exclude
