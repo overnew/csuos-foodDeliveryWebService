@@ -27,7 +27,6 @@ const MainMenu = ( order, setOrder ) => {
                 <option value="GRAND">GRAND</option>
                 <option value="DELUXE">DELUXE</option>
             </select>
-            
         </div>
     );
 }

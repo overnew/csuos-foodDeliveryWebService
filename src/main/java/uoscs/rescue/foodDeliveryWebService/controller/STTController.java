@@ -19,7 +19,6 @@ public class STTController {
 
     @PostMapping("/voice-data")
     public void voiceData(HttpServletRequest httpServletRequest) throws IOException {  //어떤 클래스일지는 모르겠
-
         String path = System.getProperty("user.dir") + "\\src\\main\\resources\\voice";
         InputStream inputStream = httpServletRequest.getInputStream();
 

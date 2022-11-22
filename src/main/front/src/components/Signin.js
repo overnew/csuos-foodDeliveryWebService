@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { sessionContext } from "../App";
 import { LoginContext } from "../View/SigninView";
 
+
 const Signin = () => {
     const info = useContext(LoginContext);
     const session = useContext(sessionContext);
@@ -53,7 +54,7 @@ const Signin = () => {
             <button type="button" onClick={SigninClick}>Go</button>
             <button type='button' onClick={() => {
                     navigate('/signup');
-                }}>singup</button>
+            }}>singup</button>
         </div>
     );
 }

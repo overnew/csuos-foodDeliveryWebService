@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Signin from '../components/Signin.js';
 import { useNavigate } from "react-router-dom";
+import AudioRecord from "../components/AudioRecord.js";
 
 export const LoginContext = React.createContext();
 
@@ -43,6 +44,7 @@ const SigninView = () => {
                     />
                 </div>
                 <Signin />
+                <AudioRecord />
             </div>
         </LoginContext.Provider>
     );
