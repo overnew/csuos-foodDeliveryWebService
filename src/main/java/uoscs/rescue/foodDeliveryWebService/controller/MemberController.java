@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import uoscs.rescue.foodDeliveryWebService.data.form.SessionForm;
 import uoscs.rescue.foodDeliveryWebService.service.MemberService;
 import uoscs.rescue.foodDeliveryWebService.utils.SessionConst;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/member")
@@ -32,6 +34,7 @@ public class MemberController {
             @SessionAttribute(name = SessionConst.SESSION_FORM, required = false)
             SessionForm sessionForm
     ){
+        log.info("session {}" ,sessionForm);
         return ResponseEntity.ok(memberService.findById(sessionForm.getId()));
     }
 
