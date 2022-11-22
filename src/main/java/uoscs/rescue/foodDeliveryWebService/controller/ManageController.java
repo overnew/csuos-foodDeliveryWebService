@@ -13,11 +13,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
 import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 import uoscs.rescue.foodDeliveryWebService.data.dto.StockDto;
 import uoscs.rescue.foodDeliveryWebService.data.form.IngredientChangeForm;
 import uoscs.rescue.foodDeliveryWebService.data.form.ResponseForm;
 import uoscs.rescue.foodDeliveryWebService.service.ManageService;
+import uoscs.rescue.foodDeliveryWebService.service.MemberService;
 import uoscs.rescue.foodDeliveryWebService.service.StockService;
 
 import java.util.List;
@@ -28,6 +30,8 @@ import java.util.List;
 @RequestMapping("/manage")
 public class ManageController {
 
+    @Autowired
+    private final MemberService memberService;
     @Autowired
     private final ManageService manageService;
     @Autowired
@@ -91,5 +95,18 @@ public class ManageController {
         stockService.applyIngredientChangeForm(changeForm);
 
         return ResponseEntity.ok(stockService.getStockData());
+    }
+
+    @GetMapping("/all-members")
+    public Page<MemberDto> getAllMemberPageList(
+            @PageableDefault(size = 5, sort="id",direction = Sort.Direction.DESC) Pageable pageable) {
+
+        List<MemberDto> memberDtoList = memberService.getAllMemberDtoList();
+
+        final int start = (int)pageable.getOffset();
+        final int end = Math.min((start + pageable.getPageSize()), memberDtoList.size());
+        final Page<MemberDto> page = new PageImpl<>(memberDtoList.subList(start, end), pageable, memberDtoList.size());
+
+        return page;
     }
 }

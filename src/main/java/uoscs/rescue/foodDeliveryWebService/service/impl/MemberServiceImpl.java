@@ -10,6 +10,8 @@ import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 import uoscs.rescue.foodDeliveryWebService.exception.NoSuchMemberException;
 import uoscs.rescue.foodDeliveryWebService.service.MemberService;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -54,4 +56,6 @@ public class MemberServiceImpl implements MemberService {
     public MemberDto findById(String id) {
        return memberDao.findById(id);
     }
+
+    public List<MemberDto> getAllMemberDtoList() {return memberDao.getAllMemberList();}
 }

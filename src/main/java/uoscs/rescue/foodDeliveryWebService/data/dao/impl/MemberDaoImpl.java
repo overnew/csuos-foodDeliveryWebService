@@ -13,6 +13,7 @@ import uoscs.rescue.foodDeliveryWebService.data.repository.MemberRepository;
 import uoscs.rescue.foodDeliveryWebService.exception.NoSuchMemberException;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -55,6 +56,12 @@ public class MemberDaoImpl implements MemberDao {
     @Override
     public Member findMemberEntityById(String id) {
         return getMemberEntityById(id);
+    }
+
+    @Override
+    public List<MemberDto> getAllMemberList() {
+        List<MemberDto> memberDtoList = memberMapper.memberListToDtoList(repository.findAll());
+        return memberDtoList;
     }
 
     @Override
