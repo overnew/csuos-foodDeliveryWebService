@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import uoscs.rescue.foodDeliveryWebService.data.dao.MemberDao;
 import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
+import uoscs.rescue.foodDeliveryWebService.data.enums.Authority;
+import uoscs.rescue.foodDeliveryWebService.data.enums.Grade;
 import uoscs.rescue.foodDeliveryWebService.exception.NoSuchMemberException;
 import uoscs.rescue.foodDeliveryWebService.service.MemberService;
 
@@ -30,10 +32,16 @@ public class MemberServiceImpl implements MemberService {
         try{
             memberDao.findById(memberDto.getId());
         }catch (NoSuchMemberException ex){  //매칭되는 아이디가 없는 경우
+            setGeneralValue(memberDto);
             return memberDao.save(memberDto);
         }
 
         return null;
+    }
+
+    private void setGeneralValue(MemberDto memberDto){
+        memberDto.setAuthority(Authority.GENERAL);  //기본 값으로 세팅
+        memberDto.setGrade(Grade.GENERAL);
     }
 
     @Override

@@ -63,6 +63,11 @@ public class SignController {
     })
     @PostMapping("/signup")
     public ResponseEntity<ResponseForm> signup(@Valid @RequestBody MemberDto memberDto){
+        if(memberDto.isPersonalInfoAgreement()){
+            if(memberDto.getName() ==null  || memberDto.getAddress() ==null)
+                return ResponseEntity.badRequest().body(buildResponseForm(false,"개인 정보를 입력해 주세요."));
+        }
+
         MemberDto savedMemberDto = memberService.saveWithCheckId(memberDto);
 
         if(savedMemberDto ==null){
@@ -71,6 +76,7 @@ public class SignController {
 
         return ResponseEntity.ok(buildResponseForm(true,"회원가입 성공"));
     }
+
 
     private ResponseForm buildResponseForm(Boolean isSuccess,String message){
         List<String> messages = new ArrayList<>();
