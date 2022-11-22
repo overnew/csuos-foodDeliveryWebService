@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { orderContext } from "../View/OrderView.js";
 
+
 const Order = () => {
     const order = useContext(orderContext);
     const navigate = useNavigate();
@@ -31,6 +32,10 @@ const Order = () => {
         orderData.salad = order.salad;
         orderData.steak = order.steak;
         orderData.wine = order.wine;
+        if ((orderData.dinnerType === 'CHAMPAGNE') && (orderData.dinnerStyle != 'DELUXE')) {
+            alert("CHAMPAGNE은 DELUXE로만 가능합니다!")
+            navigate("/order");
+        }
         await fetch("/order/make-order", {
             method: 'POST',
                 headers: {

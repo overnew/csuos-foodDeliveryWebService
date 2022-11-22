@@ -37,13 +37,13 @@ const Signin = () => {
                 console.log("false");
                 console.log(userData);
             }).then((res) => {
-                
                 return res.json();
             }).then((json) => {
                 console.log(json);
                 
                 if (json.success === true) {
-                   // navigate('/main');
+                    sessionStorage.setItem('session_form', json.messages);
+                    navigate('/main');
                 }
             })
         }
