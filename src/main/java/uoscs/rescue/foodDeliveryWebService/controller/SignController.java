@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/sign")
@@ -49,7 +51,7 @@ public class SignController {
         HttpSession session = request.getSession(); //새로 만드는 거니까 true
         session.setAttribute(SessionConst.SESSION_FORM, sessionForm);
 
-        return ResponseEntity.ok(buildResponseForm(true,"로그인 성공"));
+        return ResponseEntity.ok(buildResponseForm(true,session.getId()));
     }
 
 
