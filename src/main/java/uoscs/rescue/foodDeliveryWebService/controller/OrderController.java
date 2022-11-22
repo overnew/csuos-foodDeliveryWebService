@@ -17,6 +17,9 @@ import uoscs.rescue.foodDeliveryWebService.data.form.ResponseForm;
 import uoscs.rescue.foodDeliveryWebService.service.OrderService;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -37,11 +40,44 @@ public class OrderController {
     })
     @PostMapping("/make-order")
     public ResponseEntity<ResponseForm> makeOrder(@Valid @RequestBody OrderDto orderDto){
+        log.info("reserved time: {}", orderDto.getReservationTime());
+        if(!checkReservationTime(orderDto))
+            return ResponseEntity.badRequest().body(buildResponseForm(false, "15시 반에서 22시까지만 오픈합니다."));
+
+
         OrderDto savedOrderDto = orderService.makeOrder(orderDto);
         log.info("savedorder: {}" , savedOrderDto);
 
         ResponseForm responseForm = ResponseForm.builder().success(true).build();
         return ResponseEntity.ok(responseForm);
+    }
+
+    private boolean checkReservationTime(OrderDto orderDto){
+        LocalDateTime reservationTime = orderDto.getReservationTime();
+        log.info("reserved time: {}", reservationTime);
+        if(reservationTime == null)
+            return true;
+
+        int reservedHour = reservationTime.getHour();
+        log.info("reservedHour: {}, noew{}", reservedHour, LocalDateTime.now());
+        if(reservationTime.isAfter(LocalDateTime.now()) &&
+                reservedHour > 15.5 && reservedHour < 22){
+
+            log.info("true reservedHour: {}, noew{}", reservedHour, LocalDateTime.now());
+            return true;
+        }
+
+        return false;
+    }
+
+    private ResponseForm buildResponseForm(Boolean isSuccess,String message){
+        List<String> messages = new ArrayList<>();
+        messages.add(message);
+
+        return ResponseForm.builder()
+                .success(isSuccess)
+                .messages(messages)
+                .build();
     }
 
 }

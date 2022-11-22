@@ -21,6 +21,7 @@ public class Order {
 
     //@Column(nullable = false)
     private LocalDateTime orderTime;
+    private LocalDateTime reservationTime;
 
     @Setter
     @ManyToOne(optional = false)

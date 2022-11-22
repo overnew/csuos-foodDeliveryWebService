@@ -1,6 +1,7 @@
 package uoscs.rescue.foodDeliveryWebService.data.dto;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import uoscs.rescue.foodDeliveryWebService.data.enums.DinnerStyle;
 import uoscs.rescue.foodDeliveryWebService.data.enums.DinnerType;
 
@@ -18,6 +19,9 @@ public class OrderDto {
     private Long id;
 
     private LocalDateTime orderTime;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime reservationTime;
 
     @NotBlank(message = "주문하는 회원 명시 필수")
     private String orderedMemberId;
