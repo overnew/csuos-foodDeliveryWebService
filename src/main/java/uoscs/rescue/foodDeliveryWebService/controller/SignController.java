@@ -77,6 +77,21 @@ public class SignController {
         return ResponseEntity.ok(buildResponseForm(true,"회원가입 성공"));
     }
 
+    @ApiOperation(
+            value = "로그 아웃"
+            ,notes = "세션 값만 전달"
+    )
+    @ApiResponses({
+            @ApiResponse(code = 200, message ="로그아웃 성공")
+    })
+    @PostMapping("/sign-out")
+    public ResponseEntity<ResponseForm> singOut(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.invalidate();
+
+        return ResponseEntity.ok(buildResponseForm(true,"로그아웃 성공"));
+    }
+
 
     private ResponseForm buildResponseForm(Boolean isSuccess,String message){
         List<String> messages = new ArrayList<>();

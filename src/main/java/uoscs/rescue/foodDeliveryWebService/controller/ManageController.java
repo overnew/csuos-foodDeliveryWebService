@@ -97,6 +97,10 @@ public class ManageController {
         return ResponseEntity.ok(stockService.getStockData());
     }
 
+    @ApiOperation(
+            value = "모든 회원 리스트 받아오기"
+            ,notes = "Page 단위(5개가 들어있는 list)로 넘겨줌, parameter로 page: '숫자' 를 넘기면 해당 페이지를 가져옴"
+    )
     @GetMapping("/all-members")
     public Page<MemberDto> getAllMemberPageList(
             @PageableDefault(size = 5, sort="id",direction = Sort.Direction.DESC) Pageable pageable) {
