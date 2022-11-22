@@ -2,19 +2,14 @@ import { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { sessionContext } from "../App";
 import { LoginContext } from "../View/SigninView";
-import { useCookies } from "react-cookie";
+
 const Signin = () => {
     const info = useContext(LoginContext);
     const session = useContext(sessionContext);
     const navigate = useNavigate();
-    const [cookies, setCookie] = useCookies(['JSESSIONID']);
-    const SigninClick = async () => {
-        // function getCookie(name) {
-        //     var nameOfCookie = name + "=";
 
-        //     var x = 0;
-        //     while(x<=document.cookie.length)
-        // }
+    const SigninClick = async () => {
+        
         //결제기능 추가!
         const idRegExp = /^[a-zA-Z][0-9a-zA-Z]{5,11}$/;
         const pwRegExp = /^[a-zA-Z][0-9a-zA-Z]{5,11}$/;
@@ -42,10 +37,6 @@ const Signin = () => {
                 console.log("false");
                 console.log(userData);
             }).then((res) => {
-                console.log(document.cookie.length);
-                for (let [k, v] of res.headers) {
-                    console.log(k, v);
-                }
                 
                 return res.json();
             }).then((json) => {

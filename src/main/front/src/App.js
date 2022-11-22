@@ -5,7 +5,6 @@ import Mainview from './View/Mainview.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SignupView from './View/SignupView';
 import OrderView from './View/OrderView';
-import { CookiesProvider } from 'react-cookie';
 
 
 export const UserInfoContext = React.createContext();
@@ -36,7 +35,6 @@ function App() {
   return (
     <div className="App">
       <h2>미스터 대박 디너 서비스</h2>
-      <CookiesProvider>
       <UserInfoContext.Provider value={userData}>
         <OrderContext.Provider value={orderData}>
         <sessionContext.Provider value={sessionInfo}>
@@ -53,7 +51,6 @@ function App() {
       </sessionContext.Provider>
       </OrderContext.Provider>
       </UserInfoContext.Provider>
-      </CookiesProvider>
     </div>
   );
 }
