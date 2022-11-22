@@ -68,8 +68,10 @@ public class MemberDaoImpl implements MemberDao {
     public void updateById(String id, MemberDto updateDto) {
         Member member = getMemberEntityById(id);
         member.setName(updateDto.getName());
+        member.setGrade(updateDto.getGrade());
+        member.setAuthority(updateDto.getAuthority());
 
-        log.info("update member id: ");
+        log.info("update member id: {}, data: {}", id, updateDto);
     }
 
     @Override

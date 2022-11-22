@@ -113,4 +113,12 @@ public class ManageController {
 
         return page;
     }
+
+    public ResponseEntity<ResponseForm> updateMemberByTargetId(
+            @RequestBody MemberDto memberDto
+    ){
+        log.info("memberDto :{}", memberDto.toString());
+        //memberService.
+        return ResponseEntity.ok(ResponseForm.builder().success(true).build());
+    }
 }

@@ -34,7 +34,7 @@ public class MemberController {
             @SessionAttribute(name = SessionConst.SESSION_FORM, required = false)
             SessionForm sessionForm
     ){
-        log.info("session {}" ,sessionForm);
+        //log.info("session {}" ,sessionForm);
         return ResponseEntity.ok(memberService.findById(sessionForm.getId()));
     }
 
