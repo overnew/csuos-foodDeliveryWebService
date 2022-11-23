@@ -49,38 +49,45 @@ const AddtionalMenu = ({ order, setOrder }) => {
     }
     
     return (
-        <div className="AdditnonalMenu">
-                <label htmlFor="input_bacon">bacon  </label>
-                    <input
-                        type='number' name='bacon' value={order.bacon} onChange={handlebacon} />
-                <br />
-                <label htmlFor="input_bread">bread  </label>
-                    <input
-                        type='number' name='bread' value={order.bread} onChange={handlebread} />
-                <br />
-                <label htmlFor="input_champagne">champagne  </label>
-                    <input
-                        type='number' name='champagne' value={order.champagne} onChange={handlechampagne} />
-                <br />
-                <label htmlFor="input_coffee">coffee  </label>
-                    <input
-                        type='number' name='coffee' value={order.coffee} onChange={handlecoffee} />
-                <br />
-                <label htmlFor="input_eggScramble">eggScramble  </label>
-                    <input
-                        type='number' name='eggScramble' value={order.eggScramble} onChange={handleeggScramble} />
-                <br />
-                <label htmlFor="input_salad">salad  </label>
-                    <input
-                        type='number' name='salad' value={order.salad} onChange={handlesalad} />
-                <br />
-                <label htmlFor="input_steak">steak  </label>
-                    <input
-                        type='number' name='steak' value={order.steak} onChange={handlesteak} />
-                <br />
-                <label htmlFor="input_wine">wine  </label>
-                    <input
-                        type='number' name='wine' value={order.wine} onChange={handlewine} />
+        <div className="AdditionalMenu">
+            <label htmlFor="input_bacon">bacon  </label>
+            <br/>
+            <input
+                type='number' name='bacon' value={order.bacon} onChange={handlebacon} />
+            <br />
+            <label htmlFor="input_bread">bread  </label>
+            <br/>
+            <input
+                type='number' name='bread' value={order.bread} onChange={handlebread} />
+            <br />
+            <label htmlFor="input_champagne">champagne  </label>
+            <br/>
+            <input
+                type='number' name='champagne' value={order.champagne} onChange={handlechampagne} />
+            <br />
+            <label htmlFor="input_coffee">coffee  </label>
+            <br/>
+            <input
+                type='number' name='coffee' value={order.coffee} onChange={handlecoffee} />
+            <br />
+            <label htmlFor="input_eggScramble">eggScramble  </label>
+            <br/>
+            <input
+                type='number' name='eggScramble' value={order.eggScramble} onChange={handleeggScramble} />
+            <br />
+            <label htmlFor="input_salad">salad  </label>
+            <br/>
+            <input
+                type='number' name='salad' value={order.salad} onChange={handlesalad} />
+            <br />
+            <label htmlFor="input_steak">steak  </label>
+            <br/>
+            <input
+                type='number' name='steak' value={order.steak} onChange={handlesteak} />
+            <br />
+            <label htmlFor="input_wine">wine  </label>
+                <input
+                    type='number' name='wine' value={order.wine} onChange={handlewine} />
             </div>
     )
 }

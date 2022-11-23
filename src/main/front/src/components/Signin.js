@@ -1,12 +1,10 @@
 import { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
-import { sessionContext } from "../App";
 import { LoginContext } from "../View/SigninView";
 
 
 const Signin = () => {
     const info = useContext(LoginContext);
-    const session = useContext(sessionContext);
     const navigate = useNavigate();
 
     const SigninClick = async () => {
@@ -39,20 +37,39 @@ const Signin = () => {
                 console.log(userData);
             }).then((res) => {
                 return res.json();
-            }).then((json) => {
+            }).then(async (json) => {
                 console.log(json);
                 
                 if (json.success === true) {
                     sessionStorage.setItem('user_id', userData.id);
-                    navigate('/main');
+                    
+                    await fetch("/member/get-my-data", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: "",
+                    }).catch((err) => {
+                        navigate('/signin');
+                    }).then((res) => {
+                        return res.json();
+                    }).then((res) => {
+                        console.log(res);
+                        if (res.authority === "ADMIN") {
+                            navigate("/manage");
+                        } else if(res.authority==="GENERAL"){
+                            navigate("/main");
+                        }
+                    })
                 }
             })
         }
     }
     return (
-        <div>
-            <button type="button" onClick={SigninClick}>Go</button>
-            <button type='button' onClick={() => {
+        <div className="signinbutton">
+            <button className="button" type="button" onClick={SigninClick}>Go</button>
+            <br />
+            <button className="button" type='button' onClick={() => {
                     navigate('/signup');
             }}>singup</button>
         </div>

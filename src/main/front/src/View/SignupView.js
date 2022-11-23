@@ -7,6 +7,9 @@ const SignupView = () => {
     const [info, setInfo] = useState({
         id: "",
         password: "",
+        address: "",
+        name:"",
+        personalInfoAgreement: false
     });
 
     //id data input handler
@@ -25,19 +28,49 @@ const SignupView = () => {
         });
         
     }
+    const handleInputAddress = (e) => {
+        setInfo({
+            ...info,
+            address: e.target.value
+        })
+    }
+    const handleInfoAgreement = (e) => {
+        console.log(e.target.checked);
+        if (e.target.checked === true) {
+            setInfo({
+                ...info,
+                personalInfoAgreement: true
+            })
+            console.log("out");
+            console.log(info.personalInfoAgreement);
+        } else {
+            setInfo({
+                ...info,
+                personalInfoAgreement: false
+            })
+            console.log("out");
+            console.log(info.personalInfoAgreement);
+        }
+    }
+    const handleName = (e) => {
+        setInfo({
+            ...info,
+            name: e.target.value
+        })
+    }
     return (
         <div className="signup">
-            <div className="idInput">
-                <label htmlFor="input_id">ID  </label>
-                <input
-                    type='text' name='input_id' value={info.id} onChange={handleInputId}/>
-            </div>
-            <div className="pwInput">
-                <label htmlFor="input_pw">PW  </label>
-                <input
-                    type='password' name='input_pw' value={info.password} onChange={handleInputPw}/>
-            </div>
-
+            <input
+                    type='text' placeholder="id" name='input_id' value={info.id} onChange={handleInputId}/>
+            <input
+                type='password' placeholder="password" name='input_pw' value={info.password} onChange={handleInputPw}/>
+            <input
+                type='text' name='input_name' placeholder="name"value={info.name} onChange={handleName}/>
+            <input
+                type="text" name="input_addr" placeholder="address"value={info.address} onChange={handleInputAddress}/>
+            <span htmlFor="personalInfo">personalInfo</span>
+            <input 
+                type="checkbox" name="personalInfo" onChange={handleInfoAgreement} />                
             <signupContext.Provider value={info}>
                 <Signup />
             </signupContext.Provider>

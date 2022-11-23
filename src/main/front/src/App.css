@@ -1,38 +1,130 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Signin{
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  width: 380px;
+  height: 480px;
+  position: relative;
+  margin: 6% auto;
+  
+  padding: 5px;
+  overflow: hidden;
+  background-color:#FAF7C0;
+  color: #9C9678;
+  border:5px solid;
+  border-radius: 30px;
+  padding :10px;
 }
-
-.App-link {
-  color: #61dafb;
+.Signin input{
+  width:200px;
+  padding:10px 0;
+  margin: 5px 0;
+  border: none;
+  border-bottom: 1px solid #999;
+  outline:none;
+  background: transparent;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.signinbutton button{
+  width: 85%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+  color:#9C9678;
+  background: #E3DDBA;
+}
+.signup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  width: 380px;
+  height: 480px;
+  position: relative;
+  margin: 6% auto;
+  background: #fff;
+  padding: 5px;
+  overflow: hidden;
+  background-color:#FAF7C0;
+  color: #9C9678;
+  border:5px solid;
+  border-radius: 30px;
+  padding :10px;
+}
+.signupbutton button{
+  width: 85%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+  color:#9C9678;
+  background: #E3DDBA;
+}
+.signup input{
+  width:200px;
+  padding:10px 0;
+  margin: 5px 0;
+  border: none;
+  border-bottom: 1px solid #999;
+  outline:none;
+  background: transparent;
+}
+.Order{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  width: 380px;
+  height: 800px;
+  position: relative;
+  margin: 6% auto;
+  
+  padding: 5px;
+  overflow: hidden;
+  background-color:#FAF7C0;
+  color: #9C9678;
+  border:5px solid;
+  border-radius: 30px;
+  padding :10px;
+}
+.MainMenu select{
+  width:200px;
+  padding:10px 0;
+  margin: 5px 0;
+  border: none;
+  border-bottom: 1px solid #999;
+  outline:none;
+  background: transparent;
+  position: relative;
+  left:-21px;
+}
+.AdditionalMenu input{
+  width:200px;
+  padding:10px 0;
+  margin: 5px 0;
+  border: none;
+  border-bottom: 1px solid #999;
+  outline:none;
+  background: transparent;
+  
 }

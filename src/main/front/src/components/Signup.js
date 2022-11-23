@@ -15,14 +15,24 @@ const Signup = () => {
             alert("ID는 영문과 숫자 포함 6-12자리 이내로 입력해주세요.");
         } else if (!pwRegExp.test(info.password)) {
             alert("Password는 영문과 숫자 포함 6-12자리 이내로 입력해주세요.");
-        } else {
+        } else if (info.address === "") {
+            alert("address를 입력해 주세요!");
+        } else if (info.personalInfoAgreement === false) {
+            alert("개인정보동의를 체크해 주세요!");
+        }
+        else {
             var userData = {
                 "id": "",
                 "password": "",
+                "name": "",
+                "address": "",
                 "personalInfoAgreement": false
             };
             userData.id = info.id;
             userData.password = info.password;
+            userData.address = info.address;
+            userData.name = info.name;
+            userData.personalInfoAgreement = info.personalInfoAgreement;
 
         
             await fetch("/sign/signup", {
@@ -32,20 +42,23 @@ const Signup = () => {
                     userData
                 },
                 body: JSON.stringify(userData)
-            }).then((res) => {
-                console.log(res);
-                navigate("/signin");
             }).catch((err) => {
                 console.log(err);
                 console.log("false");
                 console.log(userData);
                 console.log(userData);
-            
-            })
+            }).then((res) => {
+                console.log(userData);
+                console.log(res);
+                navigate("/signin");
+                return res.json();
+            }).then((res) => {
+                console.log(res);
+            });
         }
     }
     return (
-        <div>
+        <div className="signupbutton">
             <button type="button" onClick={SignupClick}>submit</button>
         </div>
     )

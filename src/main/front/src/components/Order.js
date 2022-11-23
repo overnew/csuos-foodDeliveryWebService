@@ -48,7 +48,7 @@ const Order = () => {
             body: JSON.stringify(orderData)
         }).then((res) => {
             console.log(res.json());
-            console.log(orderData);
+            console.log(JSON.stringify(orderData));
             navigate("/main");
         }).catch((err) => {
             console.log(JSON.stringify(err));
