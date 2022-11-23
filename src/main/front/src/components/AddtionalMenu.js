@@ -1,4 +1,4 @@
-const AddtionalMenu = (order, setOrder) => {
+const AddtionalMenu = ({ order, setOrder }) => {
     const handlebacon = (e) => {
         setOrder({
             ...order,
@@ -8,13 +8,13 @@ const AddtionalMenu = (order, setOrder) => {
     const handlebread = (e) => {
         setOrder({
             ...order,
-            bacon: e.target.value
+            bread: e.target.value
         });
     }
     const handlechampagne = (e) => {
         setOrder({
             ...order,
-            bacon: e.target.value
+            champagne: e.target.value
         });
     }
     const handlecoffee = (e) => {
@@ -47,6 +47,7 @@ const AddtionalMenu = (order, setOrder) => {
             wine: e.target.value
         });
     }
+    
     return (
         <div className="AdditnonalMenu">
                 <label htmlFor="input_bacon">bacon  </label>

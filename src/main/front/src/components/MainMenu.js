@@ -1,21 +1,75 @@
-const MainMenu = ( order, setOrder ) => {
+const MainMenu = ({ order, setOrder }) => {
+    const handleInputType = (e) => {
+        if (e.target.value === 'VALENTINE') {
+            setOrder({
+                ...order,
+                dinnerType: e.target.value,
+                bacon: 0,
+                bread: 0,
+                champagne: 0,
+                coffee: 0,
+                eggScramble: 0,
+                salad: 0,
+                steak: 1,
+                wine: 1,
+            })
+        } else if (e.target.value === 'FRENCH') {
+            setOrder({
+                ...order,
+                dinnerType: e.target.value,
+                bacon: 0,
+                bread: 0,
+                champagne: 0,
+                coffee: 1,
+                eggScramble: 0,
+                salad: 1,
+                steak: 1,
+                wine: 1,
+            })
+        } else if (e.target.value === 'ENGLISH') {
+            setOrder({
+                ...order,
+                dinnerType: e.target.value,
+                bacon: 1,
+                bread: 1,
+                champagne: 0,
+                coffee: 0,
+                eggScramble: 1,
+                salad: 0,
+                steak: 1,
+                wine: 0,
+            })
+        } else if (e.target.value === 'CHAMPAGNE') {
+            setOrder({
+                ...order,
+                dinnerType: e.target.value,
+                bacon: 0,
+                bread: 4,//바게트
+                champagne: 1,
+                coffee: 4,//1포트
+                eggScramble: 0,
+                salad: 0,
+                steak: 1,
+                wine: 1,
+            })
+        }
+        console.log(order);
+        console.log(e.target.value);
+    }
     const handleInputStyle = (e) => {
         setOrder({
             ...order,
             dinnerStyle: e.target.value
         });
-    }
-    const handleInputType = (e) => {
-        setOrder({
-            ...order,
-            dinnerType: e.target.value
-        });
+        console.log(order);
+        console.log(e.target.value);
     }
     
     return (
         <div className="MainMenu">              
             <select name="dinnerType" onChange={handleInputType}>
                 <option defaultValue="null">Please Choose Type</option>
+                <option value="VALENTINE">VALENTINE</option>
                 <option value="FRENCH">FRENCH</option>
                 <option value="ENGLISH">ENGLISH</option>
                 <option value="CHAMPAGNE">CHAMPAGNE</option>

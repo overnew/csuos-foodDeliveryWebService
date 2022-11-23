@@ -84,15 +84,15 @@ const AudioRecord = () => {
         const sound = new File([audioUrl], "soundBlob", { lastModified: new Date().getTime(), type: "audio" });
         console.log(sound); // File 정보 출력
 
-        // await axios({
-        //     method: "POST",
-        //     url: 'http://localhost:8080/stt/voice-data',
-        //     mode: "cors",
-        //     headers: {
-        //         "Content-Type": "multipart/form-data", // Content-Type을 반드시 이렇게 하여야 한다.
-        //     },
-        //     data: sound,
-        // })
+        await axios({
+            method: "POST",
+            url: 'http://localhost:8080/stt/voice-data',
+            mode: "cors",
+            headers: {
+                "Content-Type": "multipart/form-data", // Content-Type을 반드시 이렇게 하여야 한다.
+            },
+            data: sound,
+        })
 
         
 

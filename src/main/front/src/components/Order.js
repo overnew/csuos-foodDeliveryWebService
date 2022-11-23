@@ -10,6 +10,7 @@ const Order = () => {
     const OrderClick = async () => {
 
         var orderData = {
+            "orderedMemberId": "",
             "dinnerStyle": "",
             "dinnerType": "",
             "bacon": 0,
@@ -32,6 +33,8 @@ const Order = () => {
         orderData.salad = order.salad;
         orderData.steak = order.steak;
         orderData.wine = order.wine;
+        orderData.address = order.address;
+        orderData.orderedMemberId = sessionStorage.getItem('user_id');
         if ((orderData.dinnerType === 'CHAMPAGNE') && (orderData.dinnerStyle != 'DELUXE')) {
             alert("CHAMPAGNE은 DELUXE로만 가능합니다!")
             navigate("/order");
@@ -44,9 +47,9 @@ const Order = () => {
             },
             body: JSON.stringify(orderData)
         }).then((res) => {
-            console.log(JSON.stringify(res));
+            console.log(res.json());
             console.log(orderData);
-            navigate("/");
+            navigate("/main");
         }).catch((err) => {
             console.log(JSON.stringify(err));
             console.log(orderData);

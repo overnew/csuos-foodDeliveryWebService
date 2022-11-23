@@ -22,7 +22,7 @@ const OrderView = () => {
     const handleAddress = (e) => {
         setOrder({
             ...order,
-            address:e.target.value
+            address: e.target.value
         })
     }
     
