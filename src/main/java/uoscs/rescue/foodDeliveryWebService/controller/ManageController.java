@@ -114,11 +114,19 @@ public class ManageController {
         return page;
     }
 
+    @ApiOperation(
+            value = "멤버 데이터 수정 반영하기"
+            ,notes = "MemberDto에 해당 id와 같이 바꿀 정보를 보내야만 적용됨, id를 제외한 모든 정보 변경 가능"
+    )
+    @ApiResponses({
+            @ApiResponse(code = 200, message ="관리자 권한 업데이트 적용 성공")
+    })
+    @PostMapping("/update-member")
     public ResponseEntity<ResponseForm> updateMemberByTargetId(
-            @RequestBody MemberDto memberDto
+            @RequestBody MemberDto updateMemberDto
     ){
-        log.info("memberDto :{}", memberDto.toString());
-        //memberService.
+        //log.info("memberDto :{}", memberDto.toString());
+        memberService.updateMemberByAdminAuth(updateMemberDto.getId(), updateMemberDto);
         return ResponseEntity.ok(ResponseForm.builder().success(true).build());
     }
 }

@@ -65,5 +65,21 @@ public class MemberServiceImpl implements MemberService {
        return memberDao.findById(id);
     }
 
+    @Override
     public List<MemberDto> getAllMemberDtoList() {return memberDao.getAllMemberList();}
+
+    //기본적인 정보만 변경 가능
+    @Override
+    public void updateMemberByGeneralAuth(String memberId, MemberDto updateDataDto){
+        updateDataDto.setGrade(null);
+        updateDataDto.setAuthority(null);
+        memberDao.updateById(memberId , updateDataDto);
+    }
+
+    //관리자는 유저의 모든 정보 변경 가능
+    @Override
+    public void updateMemberByAdminAuth(String memberId, MemberDto updateDataDto){
+        memberDao.updateById(memberId , updateDataDto);
+    }
+
 }
