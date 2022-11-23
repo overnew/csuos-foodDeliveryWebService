@@ -58,6 +58,8 @@ const AudioRecord = () => {
                             setAudioUrl(e.data);
                             setOnRec(true);
                         };
+                        offRecAudio();
+
                     } else {
                         setOnRec(false);
                     }
@@ -72,7 +74,7 @@ const AudioRecord = () => {
         };
     };
 
-    const offRecAudio = async () => {
+    async function offRecAudio() {
         if (onRec == false) {
             // dataavailable 이벤트로 Blob 데이터에 대한 응답을 받을 수 있음
             media.ondataavailable = function (e) {
