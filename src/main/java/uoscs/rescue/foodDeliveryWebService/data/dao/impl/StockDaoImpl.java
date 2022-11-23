@@ -36,8 +36,10 @@ public class StockDaoImpl implements StockDao {
     private final String BACON = "BACON";
     private final String EGG_SCRAMBLE = "EGG_SCRAMBLE";
     private final String BREAD = "BREAD";
+    private final String BAGUETTE_BREAD = "BAGUETTE_BREAD";
     private final String SALAD = "SALAD";
-    private final String COFFEE = "COFFEE";
+    private final String COFFEE_CUP = "COFFEE_CUP";
+    private final String COFFEE_PORT = "COFFEE_PORT";
     private final String WINE = "WINE";
     private final String CHAMPAGNE = "CHAMPAGNE";
 
@@ -49,8 +51,10 @@ public class StockDaoImpl implements StockDao {
         Ingredient bacon = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(BACON)).name(BACON).quantity(0).build());
         Ingredient eggScramble = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(EGG_SCRAMBLE)).name(EGG_SCRAMBLE).quantity(0).build());
         Ingredient bread = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(BREAD)).name(BREAD).quantity(0).build());
+        Ingredient baguetteBread = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(BAGUETTE_BREAD)).name(BAGUETTE_BREAD).quantity(0).build());
         Ingredient salad = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(SALAD)).name(SALAD).quantity(0).build());
-        Ingredient coffee = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(COFFEE)).name(COFFEE).quantity(0).build());
+        Ingredient coffee_cup = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(COFFEE_CUP)).name(COFFEE_CUP).quantity(0).build());
+        Ingredient coffee_port = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(COFFEE_PORT)).name(COFFEE_PORT).quantity(0).build());
         Ingredient wine = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(WINE)).name(WINE).quantity(0).build());
         Ingredient champagne = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(CHAMPAGNE)).name(CHAMPAGNE).quantity(0).build());
 
@@ -61,8 +65,10 @@ public class StockDaoImpl implements StockDao {
                 .bacon(bacon)
                 .eggScramble(eggScramble)
                 .bread(bread)
+                .baguetteBread(baguetteBread)
                 .salad(salad)
-                .coffee(coffee)
+                .coffee_cup(coffee_cup)
+                .coffee_port(coffee_port)
                 .wine(wine)
                 .champagne(champagne)
                 .build();
@@ -81,8 +87,10 @@ public class StockDaoImpl implements StockDao {
         IngredientChangeForm consumeForm = IngredientChangeForm.builder()
                 .bacon(changeForm.getBacon() * -1)
                 .bread(changeForm.getBread() * -1)
+                .baguetteBread(changeForm.getBaguetteBread() * -1)
                 .champagne(changeForm.getChampagne() * -1)
-                .coffee(changeForm.getCoffee() * -1)
+                .coffee_cup(changeForm.getCoffee_cup() * -1)
+                .coffee_port(changeForm.getCoffee_port() * -1)
                 .eggScramble(changeForm.getEggScramble() * -1)
                 .salad(changeForm.getSalad() * -1)
                 .steak(changeForm.getSteak() * -1)
@@ -112,11 +120,17 @@ public class StockDaoImpl implements StockDao {
         if(applyForm.getBread() != 0  && checkIngredientValueNotMinus(applyForm.getBread(), stockData.getBread().getQuantity()))
             stockData.getBread().addQuantity(applyForm.getBread());
 
+        if(applyForm.getBaguetteBread() != 0  && checkIngredientValueNotMinus(applyForm.getBaguetteBread(), stockData.getBaguetteBread().getQuantity()))
+            stockData.getBaguetteBread().addQuantity(applyForm.getBaguetteBread());
+
         if(applyForm.getChampagne() != 0 && checkIngredientValueNotMinus(applyForm.getChampagne(), stockData.getChampagne().getQuantity()))
             stockData.getChampagne().addQuantity(applyForm.getChampagne());
 
-        if(applyForm.getCoffee() != 0 && checkIngredientValueNotMinus(applyForm.getCoffee(), stockData.getCoffee().getQuantity()))
-            stockData.getCoffee().addQuantity(applyForm.getCoffee());
+        if(applyForm.getCoffee_cup() != 0 && checkIngredientValueNotMinus(applyForm.getCoffee_cup(), stockData.getCoffee_cup().getQuantity()))
+            stockData.getCoffee_cup().addQuantity(applyForm.getCoffee_cup());
+
+        if(applyForm.getCoffee_port() != 0 && checkIngredientValueNotMinus(applyForm.getCoffee_port(), stockData.getCoffee_port().getQuantity()))
+            stockData.getCoffee_port().addQuantity(applyForm.getCoffee_port());
 
         if(applyForm.getSalad() != 0 && checkIngredientValueNotMinus(applyForm.getSalad(), stockData.getSalad().getQuantity()))
             stockData.getSalad().addQuantity(applyForm.getSalad());

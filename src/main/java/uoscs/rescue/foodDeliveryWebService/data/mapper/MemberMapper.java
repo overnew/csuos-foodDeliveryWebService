@@ -7,7 +7,7 @@ import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 
 import java.util.List;
 
-@Named("MemberMappers")
+@Named("MemberMapper")
 @Mapper(componentModel ="spring" ,unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {OrderMapper.class})
 public interface MemberMapper {
     MemberMapper INSTANCE = Mappers.getMapper(MemberMapper.class);
@@ -23,7 +23,7 @@ public interface MemberMapper {
     MemberDto memberToDtoWithoutOrders(Member member);*/
 
     @Mappings({
-            @Mapping( source = "orderList",target = "orderDtoList", qualifiedByName = {"OrderMapper","orderToOrderDto"})
+            @Mapping( source = "orderList",target = "orderDtoList", qualifiedByName = {"OrderMappers","orderToOrderDto"})
     })
     MemberDto memberToDto(Member member);
     List<MemberDto> memberListToDtoList(List<Member> memberList);

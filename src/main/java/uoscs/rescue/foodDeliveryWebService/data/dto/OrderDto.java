@@ -49,10 +49,12 @@ public class OrderDto {
     private int eggScramble;
     //@PositiveOrZero(message = "구성품은 음수 불가능")
     private int bread;
+    private int baguetteBread;
     //@PositiveOrZero(message = "구성품은 음수 불가능")
     private int salad;
     //@PositiveOrZero(message = "구성품은 음수 불가능")
-    private int coffee;
+    private int coffee_cup;
+    private int coffee_port;
     //@PositiveOrZero(message = "구성품은 음수 불가능")
     private int wine;
     //@PositiveOrZero(message = "구성품은 음수 불가능")
