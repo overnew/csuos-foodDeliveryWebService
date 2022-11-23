@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { OrderContext } from "../App";
 import OrderItem from "../components/OrderItem";
 
 export const OrderDtoContext = React.createContext();
@@ -35,6 +36,7 @@ const Mainview = () => {
                 <OrderItem />
             </OrderDtoContext.Provider>
             <button type="button" onClick={onOrder}>order</button>
+            <AudioRecord />
         </div>
     );
 }
