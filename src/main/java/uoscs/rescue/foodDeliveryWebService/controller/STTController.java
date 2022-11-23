@@ -25,18 +25,18 @@ import java.util.List;
 public class STTController {
 
     @PostMapping("/voice-data")
-    public void voiceData(HttpServletRequest httpServletRequest) throws IOException {  //어떤 클래스일지는 모르겠
+    public void voiceData(HttpServletRequest httpServletRequest) throws IOException, ServletException {  //어떤 클래스일지는 모르겠
         //HttpSession session = httpServletRequest.getSession();
         //SessionForm sessionForm = (SessionForm)session.getAttribute(SessionConst.SESSION_FORM);
 
         String path = System.getProperty("user.dir") + "\\src\\main\\resources\\voice";
-        InputStream inputStream = null;
-        try {
-            inputStream = httpServletRequest.getPart("file").getInputStream();
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        }
-        log.info(Arrays.toString(inputStream.readAllBytes()));
+        InputStream inputStream;
+
+        List<Order> orderList;
+
+        log.info(httpServletRequest.getPart("file").getHeaderNames().toString());
+
+        inputStream = httpServletRequest.getPart("file").getInputStream();
 
         STTService sttService = new STTService();
 
@@ -44,7 +44,7 @@ public class STTController {
 
         log.info(Arrays.toString(bytes));
 
-        List<Order> orderList = new ArrayList<>(sttService.STTService(bytes));
+        orderList = new ArrayList<>(sttService.STTService(bytes));
 
         int a = 0;
 
