@@ -19,29 +19,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 class SpeechAPI {
 
-  protected static List<String> syncRecognizeFile(URI fileName) throws Exception {
+  protected static List<String> syncRecognizeFile(byte[] bytes) throws Exception {
+
+    log.info("asdf");
 
     try (SpeechClient speech = SpeechClient.create()) {
 
-      Path path = Paths.get(fileName);
-      byte[] data = Files.readAllBytes(path);
-      ByteString audioBytes = ByteString.copyFrom(data);
+      ByteString audioBytes = ByteString.copyFrom(bytes);
 
       SpeechContext speechContext = SpeechContext.newBuilder().addAllPhrases(TokenData.getAllKey()).build();
 
       RecognitionConfig config =
           RecognitionConfig.newBuilder()
-              .setEncoding(AudioEncoding.FLAC)
+              .setEncoding(AudioEncoding.WEBM_OPUS)
               .setLanguageCode("ko-KR")
-              .setSampleRateHertz(44100)
+              .setSampleRateHertz(48000)
               .addSpeechContexts(speechContext)
               .build();
       RecognitionAudio audio = RecognitionAudio.newBuilder().setContent(audioBytes).build();
 
       RecognizeResponse response = speech.recognize(config, audio);
       List<SpeechRecognitionResult> results = response.getResultsList();
+
+      log.info(response.getResultsList().toString());
 
       List<String> res = new ArrayList<>();
       for (SpeechRecognitionResult result : results) {
@@ -51,6 +54,8 @@ class SpeechAPI {
 
         res.addAll(Arrays.asList(tempArr));
       }
+
+      log.info(res.toString());
 
       return res;
     }

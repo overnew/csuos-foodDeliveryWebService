@@ -6,6 +6,8 @@ import org.springframework.core.io.ClassPathResource;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @SpringBootTest
@@ -18,8 +20,9 @@ public class STTServiceTests {
         STTService sttService = new STTService();
         List<Order> res;
 
+
         try {
-            res = sttService.STTService(resource.getURI());
+            res = sttService.STTService(Files.readAllBytes(Paths.get(resource.getURI())));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -32,5 +35,6 @@ public class STTServiceTests {
             System.out.println(order.getDinnerStyle());
             a++;
         }
+
     }
 }
