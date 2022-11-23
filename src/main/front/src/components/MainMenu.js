@@ -53,16 +53,12 @@ const MainMenu = ({ order, setOrder }) => {
                 wine: 1,
             })
         }
-        console.log(order);
-        console.log(e.target.value);
     }
     const handleInputStyle = (e) => {
         setOrder({
             ...order,
             dinnerStyle: e.target.value
         });
-        console.log(order);
-        console.log(e.target.value);
     }
     
     return (

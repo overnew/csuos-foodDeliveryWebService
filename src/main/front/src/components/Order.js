@@ -10,20 +10,21 @@ const Order = () => {
     const OrderClick = async () => {
 
         var orderData = {
-            "orderedMemberId": "",
-            "dinnerStyle": "",
-            "dinnerType": "",
-            "bacon": 0,
-            "bread": 0,
-            "champagne": 0,
-            "coffee": 0,
-            "eggScramble": 0,
-            "salad": 0,
-            "steak": 0,
-            "wine": 0,
-            "address": ""
+            orderedMemberId: "",
+            dinnerStyle: "",
+            dinnerType: "",
+            bacon: 0,
+            bread: 0,
+            champagne: 0,
+            coffee: 0,
+            eggScramble: 0,
+            salad: 0,
+            steak: 0,
+            wine: 0,
+            address: "",
+            //reservationTime:0
         };
-        orderData.dinnerStyle = order.dinnerStyle;
+        orderData.dinnerStyle = order.dinnerStyle;;
         orderData.dinnerType = order.dinnerType;
         orderData.bacon = order.bacon;
         orderData.bread = order.bread;
@@ -37,7 +38,8 @@ const Order = () => {
         orderData.orderedMemberId = sessionStorage.getItem('user_id');
         if ((orderData.dinnerType === 'CHAMPAGNE') && (orderData.dinnerStyle != 'DELUXE')) {
             alert("CHAMPAGNE은 DELUXE로만 가능합니다!")
-            navigate("/order");
+            
+            return;
         }
         await fetch("/order/make-order", {
             method: 'POST',
@@ -51,8 +53,9 @@ const Order = () => {
             console.log(JSON.stringify(orderData));
             navigate("/main");
         }).catch((err) => {
-            console.log(JSON.stringify(err));
-            console.log(orderData);
+            return err.json();
+        }).then((json) => {
+            console.log(json);
         })
     }
     return (

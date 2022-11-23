@@ -5,6 +5,8 @@ import Mainview from './View/Mainview.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SignupView from './View/SignupView';
 import OrderView from './View/OrderView';
+import ManagerMainView from './View/ManagerMainView';
+import StockManageView from './View/StockManageView.js';
 
 
 export const UserInfoContext = React.createContext();
@@ -45,6 +47,8 @@ function App() {
             <Route path="/signup" element={<SignupView />} />
             <Route path="/signin" element={<SigninView />} />
             <Route path="/order" element={<OrderView />} />
+            <Route path='/manager-main' element={<ManagerMainView />} />
+            <Route path="/stock" element={<StockManageView />}/>    
           </Routes>
           </BrowserRouter>
       </sessionContext.Provider>

@@ -56,7 +56,7 @@ const Signin = () => {
                     }).then((res) => {
                         console.log(res);
                         if (res.authority === "ADMIN") {
-                            navigate("/manage");
+                            navigate("/manager-main");
                         } else if(res.authority==="GENERAL"){
                             navigate("/main");
                         }

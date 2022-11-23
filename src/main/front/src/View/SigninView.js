@@ -38,7 +38,6 @@ const SigninView = () => {
                     type='password' name='input_pw' placeholder="password" value={info.pw} onChange={handleInputPw}
                 />
                 <Signin />
-                <AudioRecord />
             </div>
         </LoginContext.Provider>
     );

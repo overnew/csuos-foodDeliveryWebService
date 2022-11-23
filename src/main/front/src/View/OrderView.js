@@ -31,7 +31,8 @@ const OrderView = () => {
             <MainMenu order={order} setOrder={setOrder} />
             <AddtionalMenu order={order} setOrder={setOrder} />
             <div className="address">
-            <label htmlFor="input_address">address  </label>
+                <label htmlFor="input_address">address  </label>
+                <br/>
                     <input
                         type='text' name='address' value={order.address} onChange={handleAddress} />
                 <br />

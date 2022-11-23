@@ -86,9 +86,10 @@ const AddtionalMenu = ({ order, setOrder }) => {
                 type='number' name='steak' value={order.steak} onChange={handlesteak} />
             <br />
             <label htmlFor="input_wine">wine  </label>
-                <input
-                    type='number' name='wine' value={order.wine} onChange={handlewine} />
-            </div>
+            <br />
+            <input
+                type='number' name='wine' value={order.wine} onChange={handlewine} />
+        </div>
     )
 }
 export default AddtionalMenu;
