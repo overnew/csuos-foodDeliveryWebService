@@ -13,8 +13,10 @@ public class IngredientChangeForm {
     private int bacon;
     private int eggScramble;
     private int bread;
+    private int baguetteBread;
     private int salad;
-    private int coffee;
+    private int coffee_cup;
+    private int coffee_port;
     private int wine;
     private int champagne;
 }

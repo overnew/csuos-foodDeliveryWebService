@@ -28,8 +28,8 @@ class StockDaoTest {
         //stockDao.initStock();
         Stock stock = stockDao.getStockData();
 
-        IngredientChangeForm applyForm = IngredientChangeForm.builder().steak(10).bread(10).build();
-        IngredientChangeForm consumeForm = IngredientChangeForm.builder().steak(5).bread(10).build();
+        IngredientChangeForm applyForm = IngredientChangeForm.builder().steak(10).bread(10).baguetteBread(5).build();
+        IngredientChangeForm consumeForm = IngredientChangeForm.builder().steak(5).bread(10).baguetteBread(3).build();
 
         //when
         stockDao.applyIngredientChanges(applyForm);
@@ -40,6 +40,7 @@ class StockDaoTest {
         System.out.println(stock.getSteak());
         Assertions.assertThat(stock.getSteak().getQuantity()).isEqualTo(5);
         Assertions.assertThat(stock.getBread().getQuantity()).isEqualTo(0);
+        Assertions.assertThat(stock.getBaguetteBread().getQuantity()).isEqualTo(2);
     }
 
     @Test
@@ -52,11 +53,11 @@ class StockDaoTest {
         Ingredient ingredientSteak = Ingredient.builder().id("vm1234").name("스테끼").quantity(0).build();
         Ingredient ingredientBread = Ingredient.builder().id("vms1234").name("빵야").quantity(0).build();
 
-        IngredientChangeForm applyForm = IngredientChangeForm.builder().steak(10).bread(-10).build();
+        IngredientChangeForm applyForm = IngredientChangeForm.builder().steak(10).bread(70).coffee_port(10).build();
 
         //when
-        stock.setSteak(ingredientSteak);
-        stock.setBread(ingredientBread);
+        //stock.setSteak(ingredientSteak);
+        //stock.setBread(ingredientBread);
 
         stockDao.applyIngredientChanges(applyForm);
 
@@ -64,7 +65,8 @@ class StockDaoTest {
         stock = stockDao.getStockData();
         System.out.println(stock.getSteak());
         Assertions.assertThat(stock.getSteak().getQuantity()).isEqualTo(10);
-        Assertions.assertThat(stock.getBread().getQuantity()).isEqualTo(-10);
+        Assertions.assertThat(stock.getBread().getQuantity()).isEqualTo(70);
+        Assertions.assertThat(stock.getCoffee_port().getQuantity()).isEqualTo(10);
     }
 
     @Test

@@ -1,6 +1,5 @@
 package uoscs.rescue.foodDeliveryWebService.data.mapper;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -92,7 +91,7 @@ class MapperTest {
 
     @Test
     void orderToIngredientChangeForm(){
-        Order order = Order.builder().bread(10).coffee(1).bacon(2).build();
+        Order order = Order.builder().bread(10).coffee_cup(1).bacon(2).build();
         IngredientChangeForm ingredientChangeForm = orderMapper.orderToChangeForm(order);
 
         System.out.println(ingredientChangeForm);

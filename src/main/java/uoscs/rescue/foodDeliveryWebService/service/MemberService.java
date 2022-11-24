@@ -13,4 +13,7 @@ public interface MemberService {
 
     MemberDto findById(String id);
     List<MemberDto> getAllMemberDtoList();
+
+    void updateMemberByGeneralAuth(String memberId, MemberDto updateDataDto);
+    void updateMemberByAdminAuth(String memberId, MemberDto updateDataDto);
 }

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Builder
+@Setter
 @Getter
 @Entity(name = "orders")
 //@Table(name = "order_pure")
@@ -47,8 +48,10 @@ public class Order {
     private int bacon;
     private int eggScramble;
     private int bread;
+    private int baguetteBread;
     private int salad;
-    private int coffee;
+    private int coffee_cup;
+    private int coffee_port;
     private int wine;
     private int champagne;
 }

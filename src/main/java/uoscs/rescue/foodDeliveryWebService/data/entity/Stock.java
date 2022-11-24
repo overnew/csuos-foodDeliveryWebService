@@ -33,11 +33,19 @@ public class Stock {
 
     @OneToOne
     @JoinColumn//(name = "ingredient_id")
+    private Ingredient baguetteBread;
+
+    @OneToOne
+    @JoinColumn//(name = "ingredient_id")
     private Ingredient salad;
 
     @OneToOne
     @JoinColumn//(name = "ingredient_id")
-    private Ingredient coffee;
+    private Ingredient coffee_cup;
+
+    @OneToOne
+    @JoinColumn//(name = "ingredient_id")
+    private Ingredient coffee_port;
 
     @OneToOne
     @JoinColumn//(name = "ingredient_id")

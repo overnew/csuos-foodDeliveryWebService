@@ -9,7 +9,7 @@ import uoscs.rescue.foodDeliveryWebService.data.form.IngredientChangeForm;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named("OrderMapper")
+@Named("OrderMappers")
 @Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.IGNORE) //,uses = {MemberMapper.class})
 public interface OrderMapper {/*
     @AfterMapping   // 구현체에 들어감
@@ -41,6 +41,22 @@ public interface OrderMapper {/*
                 .accepted(order.isAccepted())
                 .orderedMemberId(order.getOrderedMember().getId())
                 .orderTime(order.getOrderTime())
+                .reservationTime(order.getReservationTime())
+                //재료 삽입
+                .baguetteBread(order.getBaguetteBread())
+                .bread(order.getBread())
+                .wine(order.getWine())
+                .bacon(order.getBacon())
+                .champagne(order.getChampagne())
+                .coffee_cup(order.getCoffee_cup())
+                .coffee_port(order.getCoffee_port())
+                .salad(order.getSalad())
+                .steak(order.getSteak())
+                .eggScramble(order.getEggScramble())
+
+                .dinnerStyle(order.getDinnerStyle())
+                .dinnerType(order.getDinnerType())
+                .address(order.getAddress())
                 .build();
     }
 

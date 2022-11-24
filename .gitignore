@@ -36,4 +36,8 @@ src/main/generated/
 
 ### VS Code ###
 .vscode/
+#<<<<<<< HEAD
 src/main/resources/project-uos-3bbe709ca933.json
+#=======
+/src/main/resources/project-uos-3bbe709ca933.json
+#>>>>>>> 4b2324c8986ec1a55f51a147e06cd4ce3162318b
