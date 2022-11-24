@@ -40,6 +40,10 @@ public class OrderController {
     })
     @PostMapping("/make-order")
     public ResponseEntity<ResponseForm> makeOrder(@Valid @RequestBody OrderDto orderDto){
+        LocalDateTime reservationTime = orderDto.getReservationTime();
+        LocalDateTime genReserveTime = LocalDateTime.of(reservationTime.getYear(), reservationTime.getMonth(), reservationTime.getDayOfMonth(), reservationTime.getHour(), reservationTime.getMinute());
+        orderDto.setReservationTime(genReserveTime);
+
         log.info("reserved time: {}", orderDto.getReservationTime());
         if(!checkReservationTime(orderDto))
             return ResponseEntity.badRequest().body(buildResponseForm(false, "15시 반에서 22시까지만 오픈합니다."));

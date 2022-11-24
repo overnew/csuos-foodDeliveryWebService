@@ -7,8 +7,10 @@ const GetStock = async(setStock) => {
             setStock ({
                 bacon: json.bacon.quantity,
                 bread: json.bread.quantity,
+                baguetteBread:json.baguetteBread.quantity,
                 champagne: json.champagne.quantity,
-                coffee: json.coffee.quantity,
+                coffee_cup: json.coffee_cup.quantity,
+                coffee_port:json.coffee_port.quantity,
                 eggScramble: json.eggScramble.quantity,
                 salad: json.salad.quantity,
                 steak: json.steak.quantity,

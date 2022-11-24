@@ -1,8 +1,8 @@
 import AcceptOrder from "./AcceptOrder";
 
 const ManageOrderItem = ({
-    accepted, address, bacon, bread, champagne,
-    coffee, dinnerStyle, dinnerType, eggScramble,
+    accepted, address, bacon, bread, baguetteBread, champagne,
+    coffee_cup, coffee_port, dinnerStyle, dinnerType, eggScramble,
     id, orderTime, orderedMemberId, price,
     reservationTime, salad, steak, wine
 }) => {
@@ -29,11 +29,15 @@ const ManageOrderItem = ({
                 <br />
                 <span>bacon:{bacon} | bread:{bread}</span>
                 <br />
-                <span>champagne:{champagne}|coffee:{coffee}</span>
+                <span>baguetteBread:{baguetteBread}|champagne:{champagne}</span>
+                <br />
+                <span>coffee_cup:{coffee_cup}|coffee_port:{coffee_port}</span>
                 <br />
                 <span>eggScramble:{eggScramble}|salad:{salad}</span>
                 <br />
                 <span>steak:{steak}|wine|{wine}</span>
+                <br />
+                <br />
             </div>
             <AcceptOrder accepted={accepted} id={id} />
         </div>

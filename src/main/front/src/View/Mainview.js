@@ -4,16 +4,16 @@ import { OrderContext } from "../App";
 import OrderItem from "../components/OrderItem";
 import AudioRecord from "../components/AudioRecord.js"
 import Signout from '../components/Signout.js'
+
 export const OrderDtoContext = React.createContext();
 const Mainview = () => {
     const navigate = useNavigate();
-    const [userData, setData] = useState({});
-    const ordered = userData.orderDtoList;
+    const [userData, setData] = useState([]);
     const onOrder = () => {
         navigate('/order');
     }
     const getData = async () => {
-        await fetch("/member/get-my-data", {
+        const res = await fetch("/member/get-my-data", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,20 +22,24 @@ const Mainview = () => {
         }).then((res) => {
             return res.json();
         }).then((json) => {
-            setData(json);
+            return json.orderDtoList;
         })
+        const initData = res.map((it) => {
+            setData(userData => [...userData, it]);
+        });
     }
     useEffect(() => {
         getData();
-        console.log(userData);
     }, []);
     
     return (
         <div className="Mainview">
             <h2>이전 주문목록</h2>
-            <OrderDtoContext.Provider value={ordered}>
-                <OrderItem />
-            </OrderDtoContext.Provider>
+            <div>
+                {userData.map((it) => {
+                    return (<OrderItem key={it.id} {...it} />);
+                })}
+            </div>
             <button type="button" onClick={onOrder}>order</button>
             <AudioRecord />
             <Signout />
