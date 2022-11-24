@@ -13,6 +13,7 @@ import uoscs.rescue.foodDeliveryWebService.data.repository.MemberRepository;
 import uoscs.rescue.foodDeliveryWebService.exception.NoSuchMemberException;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -58,11 +59,34 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     @Override
+    public List<MemberDto> getAllMemberList() {
+        List<MemberDto> memberDtoList = memberMapper.memberListToDtoList(repository.findAll());
+        return memberDtoList;
+    }
+
+    @Override
     public void updateById(String id, MemberDto updateDto) {
         Member member = getMemberEntityById(id);
-        member.setName(updateDto.getName());
 
-        log.info("update member id: ");
+        if(updateDto.getPassword() != null)
+            member.setName(updateDto.getPassword());
+
+        if(updateDto.getName() != null)
+            member.setName(updateDto.getName());
+
+        if(updateDto.getAddress() != null)
+            member.setName(updateDto.getAddress());
+
+        if(updateDto.getCreditCard() != null)
+            member.setName(updateDto.getCreditCard());
+
+        if(updateDto.getGrade() != null)
+            member.setGrade(updateDto.getGrade());
+
+        if(updateDto.getAuthority() != null)
+            member.setAuthority(updateDto.getAuthority());
+
+        log.info("update member id: {}, data: {}", id, updateDto);
     }
 
     @Override

@@ -5,6 +5,8 @@ import org.mapstruct.factory.Mappers;
 import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 
+import java.util.List;
+
 @Named("MemberMapper")
 @Mapper(componentModel ="spring" ,unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {OrderMapper.class})
 public interface MemberMapper {
@@ -21,10 +23,11 @@ public interface MemberMapper {
     MemberDto memberToDtoWithoutOrders(Member member);*/
 
     @Mappings({
-            @Mapping( source = "orderList",target = "orderDtoList", qualifiedByName = {"OrderMapper","orderToDto"})
+            @Mapping( source = "orderList",target = "orderDtoList", qualifiedByName = {"OrderMappers","orderToOrderDto"})
     })
     MemberDto memberToDto(Member member);
-
+    List<MemberDto> memberListToDtoList(List<Member> memberList);
 
     Member dtoToMember(MemberDto memberDto);
+
 }

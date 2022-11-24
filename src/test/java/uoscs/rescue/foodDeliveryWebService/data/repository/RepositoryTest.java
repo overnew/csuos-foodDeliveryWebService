@@ -58,8 +58,8 @@ class RepositoryTest {
         Member member = Member.builder().id("124").build();
         memberRepository.save(member);
 
-        Order order1 = Order.builder().id("10000").orderedMember(member).price(100).build();
-        Order order2 = Order.builder().id("10001").orderedMember(member).price(1200).build();
+        Order order1 = Order.builder().orderedMember(member).price(100).build();
+        Order order2 = Order.builder().orderedMember(member).price(1200).build();
 
         orderRepository.save(order1);
         orderRepository.save(order2);
@@ -81,18 +81,18 @@ class RepositoryTest {
         Member member = Member.builder().id("124").build();
         memberRepository.save(member);
 
-        Order order1 = Order.builder().id("10000").orderedMember(member).price(100).build();
-        Order order2 = Order.builder().id("10001").orderedMember(member).price(1200).build();
+        Order order1 = Order.builder().orderedMember(member).price(100).build();
+        Order order2 = Order.builder().orderedMember(member).price(1200).build();
 
-        orderRepository.save(order1);
-        orderRepository.save(order2);
+        Order savedOrder1 = orderRepository.save(order1);
+        Order savedOrder2 = orderRepository.save(order2);
 
         em.flush();
         em.clear();
 
 
-        Order orderInRepo = orderRepository.findById(order1.getId()).get();
-        OrderDto orderDto = orderMapper.orderToDto(orderInRepo);
+        Order orderInRepo = orderRepository.findById(savedOrder1.getId()).get();
+        OrderDto orderDto = orderMapper.orderToOrderDto(orderInRepo);
         System.out.println(orderDto);
 
 

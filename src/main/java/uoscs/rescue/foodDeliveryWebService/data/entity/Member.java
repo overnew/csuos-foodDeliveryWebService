@@ -1,6 +1,7 @@
 package uoscs.rescue.foodDeliveryWebService.data.entity;
 
 import lombok.*;
+import uoscs.rescue.foodDeliveryWebService.data.enums.Authority;
 import uoscs.rescue.foodDeliveryWebService.data.enums.Grade;
 
 import javax.persistence.*;
@@ -26,12 +27,16 @@ public class Member {
 
     private boolean personalInfoAgreement;
 
+    private String creditCard;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderedMember", fetch = FetchType.EAGER)
     //@JoinColumn(name = "order_id")
     @ToString.Exclude
     private List<Order> orderList;
 
     private Grade grade;
+
+    private Authority authority;
 
 /*
     @OneToOne(fetch = FetchType.EAGER)
