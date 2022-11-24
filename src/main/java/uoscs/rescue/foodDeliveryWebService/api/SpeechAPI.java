@@ -22,6 +22,7 @@ import java.util.List;
 @Slf4j
 class SpeechAPI {
 
+<<<<<<< Updated upstream
   protected static List<String> syncRecognizeFile(byte[] bytes) throws Exception {
 
     log.info("asdf");
@@ -29,6 +30,14 @@ class SpeechAPI {
     try (SpeechClient speech = SpeechClient.create()) {
 
       ByteString audioBytes = ByteString.copyFrom(bytes);
+=======
+  protected static List<String> syncRecognizeFile(byte[] data) throws Exception {
+
+    try (SpeechClient speech = SpeechClient.create()) {
+
+
+      ByteString audioBytes = ByteString.copyFrom(data);
+>>>>>>> Stashed changes
 
       SpeechContext speechContext = SpeechContext.newBuilder().addAllPhrases(TokenData.getAllKey()).build();
 

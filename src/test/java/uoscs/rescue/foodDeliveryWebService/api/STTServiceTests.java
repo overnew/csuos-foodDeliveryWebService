@@ -15,7 +15,7 @@ public class STTServiceTests {
 
     @Test
     void requestSpeechOrder() {
-        ClassPathResource resource = new ClassPathResource("SpeechTest.flac");
+        ClassPathResource resource = new ClassPathResource("SpeechTest.opus");
 
         STTService sttService = new STTService();
         List<Order> res;

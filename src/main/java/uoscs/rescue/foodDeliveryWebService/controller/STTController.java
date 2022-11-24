@@ -5,6 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import uoscs.rescue.foodDeliveryWebService.api.STTService;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
+<<<<<<< Updated upstream
+=======
+import uoscs.rescue.foodDeliveryWebService.data.form.SessionForm;
+>>>>>>> Stashed changes
 import uoscs.rescue.foodDeliveryWebService.utils.SessionConst;
 
 import javax.servlet.ServletException;
@@ -15,7 +19,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+<<<<<<< Updated upstream
 import java.util.Arrays;
+=======
+>>>>>>> Stashed changes
 import java.util.List;
 
 @Slf4j
@@ -25,6 +32,7 @@ import java.util.List;
 public class STTController {
 
     @PostMapping("/voice-data")
+<<<<<<< Updated upstream
     public void voiceData(HttpServletRequest httpServletRequest) throws IOException, ServletException {  //어떤 클래스일지는 모르겠
         //HttpSession session = httpServletRequest.getSession();
         //SessionForm sessionForm = (SessionForm)session.getAttribute(SessionConst.SESSION_FORM);
@@ -59,6 +67,19 @@ public class STTController {
         File voiceFile = File.createTempFile( "voice_" /*+sessionForm.getId()+"_"*/ +String.valueOf(inputStream.hashCode()), ".tmp", new File(path));
         log.info("success! saved in {}",voiceFile.getAbsolutePath());
 
+=======
+    public void voiceData(HttpServletRequest httpServletRequest) throws ServletException, IOException {  //어떤 클래스일지는 모르겠
+        //HttpSession session = httpServletRequest.getSession();
+        //SessionForm sessionForm = (SessionForm)session.getAttribute(SessionConst.SESSION_FORM);
+
+        List<Order> orderList;
+        STTService sttService = new STTService();
+
+        InputStream inputStream = httpServletRequest.getPart("file").getInputStream();
+        byte[] bytes = inputStream.readAllBytes();
+
+        orderList = new ArrayList<>(sttService.STTService(bytes));
+>>>>>>> Stashed changes
     }
 
 }

@@ -5,6 +5,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 
 import java.nio.file.Files;
+<<<<<<< Updated upstream
+=======
+import java.nio.file.Path;
+>>>>>>> Stashed changes
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -15,7 +19,7 @@ public class SpeechAPITests {
 
     @Test
     void requestSpeechToText() {
-        ClassPathResource resource = new ClassPathResource("SpeechTest.flac");
+        ClassPathResource resource = new ClassPathResource("SpeechTest.opus");
 
         List<String> res;
 
