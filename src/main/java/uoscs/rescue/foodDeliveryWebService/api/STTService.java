@@ -1,5 +1,6 @@
 package uoscs.rescue.foodDeliveryWebService.api;
 
+import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
 import uoscs.rescue.foodDeliveryWebService.exception.APIException;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class STTService {
-    public List<Order> STTService(byte[] fileData) {
+    public List<OrderDto> STTService(byte[] fileData) {
 
         List<String> res;
         try {
@@ -17,6 +18,6 @@ public class STTService {
             throw new APIException("Speech Client creation failed", e);
         }
 
-        return new ArrayList<Order>(TokenParsing.parsingOrder(res));
+        return new ArrayList<OrderDto>(TokenParsing.parsingOrder(res));
     }
 }

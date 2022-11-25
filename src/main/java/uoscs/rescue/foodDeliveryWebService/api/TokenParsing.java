@@ -1,5 +1,6 @@
 package uoscs.rescue.foodDeliveryWebService.api;
 
+import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
 import uoscs.rescue.foodDeliveryWebService.data.enums.DinnerStyle;
 import uoscs.rescue.foodDeliveryWebService.data.enums.DinnerType;
@@ -14,9 +15,9 @@ import java.util.Map;
 // 그 사이에 숫자가 언급되면 number 에 반영하여 끝에 orders list 에 add 할 횟수를 결정함.
 
 class TokenParsing {
-    protected static List<Order> parsingOrder(List<String> text) {
+    protected static List<OrderDto> parsingOrder(List<String> text) {
 
-        List<Order> orders = new ArrayList<Order>();
+        List<OrderDto> orders = new ArrayList<OrderDto>();
 
         Map<String, DinnerType> type = TokenData.getType();
         Map<String, DinnerStyle> style = TokenData.getStyle();
@@ -24,7 +25,7 @@ class TokenParsing {
 
         int point = 0;
         int num = 1;
-        Order order = new Order();
+        OrderDto order = new OrderDto();
         for (String word: text) {
 
             for (String dinner_type: type.keySet()) {
@@ -39,7 +40,7 @@ class TokenParsing {
                             orders.add(order);
                         }
                         num = 1;
-                        order = new Order();
+                        order = new OrderDto();
                         order.setDinnerType(type.get(dinner_type));
                     }
                 }
