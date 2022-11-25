@@ -22,6 +22,7 @@ const Mainview = () => {
         }).then((res) => {
             return res.json();
         }).then((json) => {
+            console.log(json.orderDtoList);
             return json.orderDtoList;
         })
         const initData = res.map((it) => {
@@ -30,19 +31,31 @@ const Mainview = () => {
     }
     useEffect(() => {
         getData();
+        
     }, []);
     
     return (
         <div className="Mainview">
-            <h2>이전 주문목록</h2>
-            <div>
+            <div className="topbar">
+                <h2>이전 주문목록</h2>
+                
+            </div>
+            <div className="topbarutils">
+                <button type="button" onClick={onOrder}>주문</button>
+                <Signout />
+                <AudioRecord />
+            </div>
+            <hr />
+            <div className="prevorderitem">
                 {userData.map((it) => {
-                    return (<OrderItem key={it.id} {...it} />);
+                    return (
+                        <p>
+                            <OrderItem key={it.id} {...it} />
+                        </p>);
                 })}
             </div>
-            <button type="button" onClick={onOrder}>order</button>
-            <AudioRecord />
-            <Signout />
+            
+            
         </div>
     );
 }

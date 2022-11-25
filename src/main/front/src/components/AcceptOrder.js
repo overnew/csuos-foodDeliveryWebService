@@ -9,13 +9,22 @@ const AcceptOrder = ({ accept, id }) => {
                 },
                 body: "",
             }).then((res) => {
-                console.log(res.json().success);
+               // console.log(res.json().success);
+                return res.json();
+            }).then((json) => {
+                console.log(json);
+            }).catch((err) => {
+                console.log(err);
             })
         
     }
     return (
         <div>
-            <button type="button" onClick={acceptHandler}>accept</button>
+            {   
+                !accept ?
+                    <button type="button" onClick={acceptHandler}>accept</button> :
+                    <button type="button">accpeted</button>
+            }
         </div>
     )
 }

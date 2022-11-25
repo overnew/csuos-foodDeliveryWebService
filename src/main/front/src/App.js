@@ -7,6 +7,7 @@ import SignupView from './View/SignupView';
 import OrderView from './View/OrderView';
 import ManagerMainView from './View/ManagerMainView';
 import StockManageView from './View/StockManageView.js';
+import PaymentView from './View/PaymentView.js';
 
 
 export const UserInfoContext = React.createContext();
@@ -48,7 +49,8 @@ function App() {
             <Route path="/signin" element={<SigninView />} />
             <Route path="/order" element={<OrderView />} />
             <Route path='/manager-main' element={<ManagerMainView />} />
-            <Route path="/stock" element={<StockManageView />}/>    
+            <Route path="/stock" element={<StockManageView />} /> 
+            <Route path='/payment' element={<PaymentView />} />
           </Routes>
           </BrowserRouter>
       </sessionContext.Provider>

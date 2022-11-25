@@ -61,12 +61,14 @@ const MainMenu = ({ order, setOrder }) => {
                 wine: 1,
             })
         }
+        console.log(order);
     }
     const handleInputStyle = (e) => {
         setOrder({
             ...order,
             dinnerStyle: e.target.value
         });
+        console.log(order);
     }
     
     return (

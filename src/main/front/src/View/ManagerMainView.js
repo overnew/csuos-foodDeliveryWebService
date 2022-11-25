@@ -26,14 +26,22 @@ const ManagerMainView = () => {
         navigate('/stock');
     }
     return(
-        <div>
-            <h2>Main</h2>
-            <div>
-            {order.map((it) => {
-                return (<ManageOrderItem key={it.id} {...it} />);
-                })}
+        <div className="ManagerMainView">
+            <div className="topbar">
+                <h2>현 주문목록</h2>
             </div>
-            <button type="button" onClick={handleStock}>stock</button>
+            <div className="topbarutils">
+                <button type="button" onClick={handleStock}>stock</button>
+            </div>
+            
+            <div className="ordereditems">
+            {order.map((it) => {
+                return (
+                    <p>
+                    <ManageOrderItem key={it.id} {...it} />
+                    </p>
+                )})}
+            </div>
         </div>
     );
 }

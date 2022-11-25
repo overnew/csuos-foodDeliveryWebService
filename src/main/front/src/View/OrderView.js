@@ -2,25 +2,29 @@ import { useState, createContext } from "react"
 import Order from '../components/Order.js'
 import MainMenu from '../components/MainMenu.js'
 import AddtionalMenu from "../components/AddtionalMenu.js";
-export const orderContext = new createContext();
+import PaymentView from "./PaymentView.js";
+import { useNavigate } from "react-router-dom";
+
 
 const OrderView = () => {
-    
+    const navigate = useNavigate();
+
     const [order, setOrder] = useState({
-        "dinnerStyle": "",
-        "dinnerType": "",
-        "bacon": 0,
-        "bread": 0,
-        "baguetteBread": 0,
-        "champagne": 0,
-        "coffee_cup": 0,
-        "coffee_port": 0,
-        "eggScramble": 0,
-        "salad": 0,
-        "steak": 0,
-        "wine": 0,
-        "address": "",
-        "reservationTime":""
+        dinnerStyle: "",
+        dinnerType: "",
+        bacon: 0,
+        bread: 0,
+        baguetteBread: 0,
+        champagne: 0,
+        coffee_cup: 0,
+        coffee_port: 0,
+        eggScramble: 0,
+        salad: 0,
+        steak: 0,
+        wine: 0,
+        address: "",
+        reservationTime: "",
+        price:0
     });
     const handleAddress = (e) => {
         setOrder({
@@ -34,6 +38,22 @@ const OrderView = () => {
             reservationTime: e.target.value
         });
         console.log(e.target.value);
+    }
+    const onPayment = () => {
+        if ((order.dinnerType === 'CHAMPAGNE') && (order.dinnerStyle != 'DELUXE')) {
+            alert("CHAMPAGNE은 DELUXE로만 가능합니다!")
+            
+            return;
+        } 
+        for (var key in order) {
+            if ( order[key] === '' || order[key] == null) {
+                alert("빈 값이 있네요");
+                return;
+            }
+        }
+        navigate('/payment', {
+            state: order
+        } );
     }
     
     return (
@@ -53,9 +73,7 @@ const OrderView = () => {
                 <input
                     type="datetime-local" value={order.reservationTime} onChange={handleReservTime}/>
             </div>
-            <orderContext.Provider value={order}>
-                <Order />
-            </orderContext.Provider>
+            <button type="button" onClick={onPayment}>payment</button>
         </div>
     )
 }

@@ -1,29 +1,28 @@
-
+.App{
+  background-color: grey;
+  height:max-content;
+}
 .Signin{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 0;
   padding:0;
-  box-sizing: border-box;
   font-family: sans-serif;
   width: 380px;
   height: 480px;
   position: relative;
   margin: 6% auto;
   
-  padding: 5px;
-  overflow: hidden;
   background-color:#FAF7C0;
   color: #9C9678;
-  border:5px solid;
+  border:1px solid;
   border-radius: 30px;
   padding :10px;
 }
 .Signin input{
   width:200px;
-  padding:10px 0;
+  padding:15px 0;
   margin: 5px 0;
   border: none;
   border-bottom: 1px solid #999;
@@ -35,10 +34,11 @@
   padding: 10px 30px;
   cursor: pointer;
   display: block;
-  margin: auto;
+  margin-top: 5px;
+  margin-bottom: -15px;
   border: 0;
   outline: none;
-  border-radius: 30px;
+  border-radius: 5px;
   color:#9C9678;
   background: #E3DDBA;
 }
@@ -47,29 +47,25 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 0;
   padding:0;
-  box-sizing: border-box;
   font-family: sans-serif;
   width: 380px;
   height: 480px;
   position: relative;
   margin: 6% auto;
-  background: #fff;
-  padding: 5px;
-  overflow: hidden;
+  
   background-color:#FAF7C0;
   color: #9C9678;
-  border:5px solid;
+  border:1px solid;
   border-radius: 30px;
   padding :10px;
 }
 .signupbutton button{
-  width: 85%;
+  width: 200px;
   padding: 10px 30px;
   cursor: pointer;
   display: block;
-  margin: auto;
+  margin: 10px 0 0 10px;
   border: 0;
   outline: none;
   border-radius: 30px;
@@ -78,13 +74,20 @@
 }
 .signup input{
   width:200px;
-  padding:10px 0;
+  padding:15px 0;
   margin: 5px 0;
   border: none;
   border-bottom: 1px solid #999;
   outline:none;
   background: transparent;
 }
+.pi{
+  margin:5px 5px;
+}
+.pi input{
+  margin: -85px;
+}
+
 .Order{
   display: flex;
   align-items: center;
@@ -95,9 +98,10 @@
   box-sizing: border-box;
   font-family: sans-serif;
   width: 380px;
-  height: 1000px;
+  height: auto;
   position: relative;
   margin: 6% auto;
+  margin-top:1%;
   
   padding: 5px;
   overflow: hidden;
@@ -136,4 +140,147 @@
   border-bottom: 1px solid #999;
   outline:none;
   background: transparent;
+}
+.Mainview{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding:0;
+  font-family: sans-serif;
+  width: 700px;
+  height: auto;
+  position: relative;
+  margin: 6% auto;
+  margin-top:1%;
+  border-color:transparent;
+  border:5px solid;
+  background-color:white;
+  border:1px solid;
+  border-radius: 30px;
+  border-color: #9C9678;
+  padding :10px;
+}
+.topbar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding:0;
+  font-family: sans-serif;
+  height: 20px;
+  width:700px;
+  position: relative;
+  margin: 2% auto;
+}
+
+.topbar h2{
+  order:0;
+  margin: 15%;
+}
+.topbarutils{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.topbarutils button{
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  color:#9C9678;
+  background: #E3DDBA;
+  justify-content: center;
+  align-items: center;
+  width:auto;
+  padding: 5px;
+  margin: 20px;
+}
+.prevorderitem{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin:10px;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.prevorderitem p{
+  border: 1px solid black;
+  padding: 3%;
+  border-radius: 15px;
+  background-color:#FAF7C0;
+  color: #9C9678;
+  border:transparent;
+  width : 500px;
+
+}
+.prevorderitem span{
+  margin: 10px;
+}
+.prevorderitem p{
+  padding: 0 -15px -15px 0;
+}
+.prevorderitem button{
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  color:#9C9678;
+  background: transparent;
+  text-align: center;
+  width: 100%;
+}
+
+.ManagerMainView{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding:0;
+  font-family: sans-serif;
+  width: 700px;
+  height: auto;
+  position: relative;
+  margin: 6% auto;
+  margin-top:1%;
+  border-color:transparent;
+  border:5px solid;
+  background-color:white;
+  border:1px solid;
+  border-radius: 30px;
+  border-color: #9C9678;
+  padding :10px;
+}
+.ordereditems{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin:10px;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.ordereditems p{
+  border: 1px solid black;
+  padding: 3%;
+  border-radius: 15px;
+  background-color:#FAF7C0;
+  color: #9C9678;
+  border:transparent;
+  width : 500px;
+
+}
+.ordereditems span{
+  margin: 10px;
+}
+.ordereditems p{
+  padding: 0 -15px -15px 0;
+}
+.ordereditems button{
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  color:#9C9678;
+  background: transparent;
+  text-align: center;
+  width: 100%;
 }

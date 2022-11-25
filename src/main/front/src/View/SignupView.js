@@ -67,12 +67,14 @@ const SignupView = () => {
             <input
                 type='text' name='input_name' placeholder="name"value={info.name} onChange={handleName}/>
             <input
-                type="text" name="input_addr" placeholder="address"value={info.address} onChange={handleInputAddress}/>
+                type="text" name="input_addr" placeholder="address" value={info.address} onChange={handleInputAddress} />
+            <div className="pi">
             <span htmlFor="personalInfo">personalInfo</span>
-            <input 
-                type="checkbox" name="personalInfo" onChange={handleInfoAgreement} />                
+                <input className="checkbox"
+                    type="checkbox" name="personalInfo" onChange={handleInfoAgreement} />                
+            </div>
             <signupContext.Provider value={info}>
-                <Signup />
+            <Signup />
             </signupContext.Provider>
         </div>
     )

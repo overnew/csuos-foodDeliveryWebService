@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 const OrderItem = ({
     accepted, address, bacon, baguetteBread,bread, champagne,
@@ -5,21 +6,39 @@ const OrderItem = ({
     id, orderTime, orderedMemberId, price,
     reservationTime, salad, steak, wine
 }) => {
+    const [visible, setVisible] = useState(false);
+
     return (
         <div>
             <div className="Info">
                 <span>
-                    주문자:{orderedMemberId}|주문시각:{orderTime}
+                    주문시각:{orderTime}
                 </span>
                 <br />
                 <span>
-                    예약시간:{reservationTime}|주문수락:{accepted}
+                    예약시간:{reservationTime}
                 </span>
-                <br/>
+                <br />
                 <span>
-                    주소:{address}|가격:{price}|id:{id}
+                    주소:{address}|가격:{price}
                 </span>
+                <br />
+                {!accepted ?
+                    <span>
+                        주문 확인 중...
+                    </span> :
+                    <span>
+                        주문 확인 완료!
+                    </span>
+                    }
             </div>
+            <button onClick={() => {
+                setVisible(!visible);
+            }}>
+                ▼
+            </button>
+            <hr />
+            {visible &&
             <div className="orderInfo">
                 <span>
                     종류:{dinnerType}|스타일:{dinnerStyle}
@@ -35,6 +54,7 @@ const OrderItem = ({
                 <br />
                 <span>steak:{steak}|wine:{wine}</span>
             </div>
+            }
         </div>
     )
 }

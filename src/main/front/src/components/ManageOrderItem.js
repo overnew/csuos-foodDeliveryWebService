@@ -1,3 +1,4 @@
+import { useState } from "react";
 import AcceptOrder from "./AcceptOrder";
 
 const ManageOrderItem = ({
@@ -6,9 +7,9 @@ const ManageOrderItem = ({
     id, orderTime, orderedMemberId, price,
     reservationTime, salad, steak, wine
 }) => {
+    const [visible, setVisible] = useState(false);
     return (
         <div className="ManageOrderItem">
-            <h2>주문목록</h2>
             <div className="Info">
                 <span>
                     주문자:{orderedMemberId}|주문시각:{orderTime}
@@ -22,24 +23,31 @@ const ManageOrderItem = ({
                     주소:{address}|가격:{price}|id:{id}
                 </span>
             </div>
-            <div className="orderInfo">
-                <span>
-                    종류:{dinnerType}|스타일:{dinnerStyle}
-                </span>
-                <br />
-                <span>bacon:{bacon} | bread:{bread}</span>
-                <br />
-                <span>baguetteBread:{baguetteBread}|champagne:{champagne}</span>
-                <br />
-                <span>coffee_cup:{coffee_cup}|coffee_port:{coffee_port}</span>
-                <br />
-                <span>eggScramble:{eggScramble}|salad:{salad}</span>
-                <br />
-                <span>steak:{steak}|wine|{wine}</span>
-                <br />
-                <br />
-            </div>
+            <button onClick={() => {
+                setVisible(!visible);
+            }}>
+                ▼
+            </button>
+            <hr />
+            {visible &&
+                <div className="orderInfo">
+                    <span>
+                        종류:{dinnerType}|스타일:{dinnerStyle}
+                    </span>
+                    <br />
+                    <span>bacon:{bacon} | bread:{bread}</span>
+                    <br />
+                    <span>baguetteBread:{baguetteBread}|champagne:{champagne}</span>
+                    <br />
+                    <span>coffee_cup:{coffee_cup}|coffee_port:{coffee_port}</span>
+                    <br />
+                    <span>eggScramble:{eggScramble}|salad:{salad}</span>
+                    <br />
+                    <span>steak:{steak}|wine:{wine}</span>
+                </div>
+            }
             <AcceptOrder accepted={accepted} id={id} />
+
         </div>
     );
 }

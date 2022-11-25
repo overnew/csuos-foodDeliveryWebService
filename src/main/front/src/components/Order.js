@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { orderContext } from "../View/OrderView.js";
+import { orderContext } from "../View/PaymentView";
 
 
 const Order = () => {
@@ -24,9 +24,10 @@ const Order = () => {
             steak: 0,
             wine: 0,
             address: "",
-            reservationTime:""
+            reservationTime: "",
+            price: 0
         };
-        orderData.dinnerStyle = order.dinnerStyle;;
+        orderData.dinnerStyle = order.dinnerStyle;
         orderData.dinnerType = order.dinnerType;
         orderData.bacon = order.bacon;
         orderData.bread = order.bread;
@@ -41,11 +42,8 @@ const Order = () => {
         orderData.address = order.address;
         orderData.orderedMemberId = sessionStorage.getItem('user_id');
         orderData.reservationTime = order.reservationTime;
-        if ((orderData.dinnerType === 'CHAMPAGNE') && (orderData.dinnerStyle != 'DELUXE')) {
-            alert("CHAMPAGNE은 DELUXE로만 가능합니다!")
-            
-            return;
-        }
+        orderData.price = order.price;
+        
         await fetch("/order/make-order", {
             method: 'POST',
                 headers: {
