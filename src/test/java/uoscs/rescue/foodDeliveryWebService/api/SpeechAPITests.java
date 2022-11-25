@@ -1,6 +1,7 @@
 package uoscs.rescue.foodDeliveryWebService.api;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 
@@ -13,6 +14,7 @@ import static uoscs.rescue.foodDeliveryWebService.api.SpeechAPI.syncRecognizeFil
 @SpringBootTest
 public class SpeechAPITests {
 
+/*
     @Test
     void requestSpeechToText() {
         ClassPathResource resource = new ClassPathResource("SpeechTest.opus");
@@ -26,5 +28,5 @@ public class SpeechAPITests {
         }
 
         System.out.println(res);
-    }
+    }*/
 }

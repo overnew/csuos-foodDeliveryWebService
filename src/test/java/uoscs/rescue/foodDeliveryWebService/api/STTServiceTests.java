@@ -12,7 +12,7 @@ import java.util.List;
 
 @SpringBootTest
 public class STTServiceTests {
-
+/*
     @Test
     void requestSpeechOrder() {
         ClassPathResource resource = new ClassPathResource("SpeechTest.opus");
@@ -35,6 +35,10 @@ public class STTServiceTests {
             System.out.println(order.getDinnerStyle());
             a++;
         }
+//<<<<<<< api
 
     }
+//=======
+    }*/
+//>>>>>>> master
 }

@@ -10,7 +10,10 @@ import com.google.cloud.speech.v1.SpeechRecognitionAlternative;
 import com.google.cloud.speech.v1.SpeechRecognitionResult;
 import com.google.protobuf.ByteString;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,10 +22,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//<<<<<<< api
 @Slf4j
 class SpeechAPI {
 
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
   protected static List<String> syncRecognizeFile(byte[] bytes) throws Exception {
 
     log.info("asdf");
@@ -30,14 +34,28 @@ class SpeechAPI {
     try (SpeechClient speech = SpeechClient.create()) {
 
       ByteString audioBytes = ByteString.copyFrom(bytes);
-=======
+//=======
   protected static List<String> syncRecognizeFile(byte[] data) throws Exception {
 
     try (SpeechClient speech = SpeechClient.create()) {
 
 
+//=======
+public class SpeechAPI {
+
+  public static List<String> syncRecognizeFile(byte[] data) throws Exception {
+
+    try (SpeechClient speech = SpeechClient.create()) {
+/*
+      Path path = Paths.get(fileName);
+      File file = new File(fileName.toString());
+      new FileInputStream(fileName);
+
+
+      byte[] data = Files.readAllBytes(path);*/
+//>>>>>>> master
       ByteString audioBytes = ByteString.copyFrom(data);
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 
       SpeechContext speechContext = SpeechContext.newBuilder().addAllPhrases(TokenData.getAllKey()).build();
 
