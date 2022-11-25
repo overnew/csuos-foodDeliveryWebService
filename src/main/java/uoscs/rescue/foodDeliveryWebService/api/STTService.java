@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class STTService {
-    public List<Order> STTService(URI fileName) {
+    public List<Order> STTService(byte[] data) {
 
         List<String> res;
         try {
-            res = SpeechAPI.syncRecognizeFile(fileName);
+            res = SpeechAPI.syncRecognizeFile(data);
         } catch (Exception e) {
             throw new APIException("Speech Client creation failed", e);
         }
