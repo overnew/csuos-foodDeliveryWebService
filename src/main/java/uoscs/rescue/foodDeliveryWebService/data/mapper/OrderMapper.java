@@ -42,6 +42,7 @@ public interface OrderMapper {/*
                 .orderedMemberId(order.getOrderedMember().getId())
                 .orderTime(order.getOrderTime())
                 .reservationTime(order.getReservationTime())
+                .price(order.getPrice())
                 //재료 삽입
                 .baguetteBread(order.getBaguetteBread())
                 .bread(order.getBread())
