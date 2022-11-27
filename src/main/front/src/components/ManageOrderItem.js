@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AcceptOrder from "./AcceptOrder";
 
 const ManageOrderItem = ({
@@ -7,7 +7,27 @@ const ManageOrderItem = ({
     id, orderTime, orderedMemberId, price,
     reservationTime, salad, steak, wine
 }) => {
+    const [member, setMember] = useState([]);
+    const getMember = async () => {
+        const res = await fetch("/manage/all-members")
+            .then((res) => {
+                return res.json();
+            }).then((json) => {
+                console.log(json.content);
+                return json.content;
+            });
+        const initData = () => {
+            for (let key = 0; key < res.length; key++){
+                setMember([...member, res.key]);
+            }
+        }
+    }
+    useEffect(() =>{
+        getMember();
+        console.log(member);
+    }, []);
     const [visible, setVisible] = useState(false);
+
     return (
         <div className="ManageOrderItem">
             <div className="Info">

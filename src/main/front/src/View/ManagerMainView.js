@@ -19,6 +19,7 @@ const ManagerMainView = () => {
             
         });
     }
+    
     useEffect(() => {
         getList();
     }, []);
@@ -38,7 +39,7 @@ const ManagerMainView = () => {
             {order.map((it) => {
                 return (
                     <p>
-                    <ManageOrderItem key={it.id} {...it} />
+                    <ManageOrderItem key={it.id} {...it } />
                     </p>
                 )})}
             </div>
