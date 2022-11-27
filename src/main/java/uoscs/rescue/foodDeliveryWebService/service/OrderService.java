@@ -4,4 +4,6 @@ import uoscs.rescue.foodDeliveryWebService.data.dto.OrderDto;
 
 public interface OrderService {
     OrderDto makeOrder(OrderDto orderDto);
+
+    OrderDto fillIngredientByType(OrderDto orderDto);
 }

@@ -10,7 +10,10 @@ import com.google.cloud.speech.v1.SpeechRecognitionAlternative;
 import com.google.cloud.speech.v1.SpeechRecognitionResult;
 import com.google.protobuf.ByteString;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,40 +22,56 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 class SpeechAPI {
 
-  protected static List<String> syncRecognizeFile(URI fileName) throws Exception {
+//<<<<<<< Updated upstream
+  /*
+  protected static List<String> syncRecognizeFile(byte[] bytes) throws Exception {
+
+    log.info("asdf");
 
     try (SpeechClient speech = SpeechClient.create()) {
 
-      Path path = Paths.get(fileName);
-      byte[] data = Files.readAllBytes(path);
-      ByteString audioBytes = ByteString.copyFrom(data);
+      ByteString audioBytes = ByteString.copyFrom(bytes);
+//=======
+      */
+      protected static List<String> syncRecognizeFile(byte[] data) throws Exception {
 
-      SpeechContext speechContext = SpeechContext.newBuilder().addAllPhrases(TokenData.getAllKey()).build();
+        try (SpeechClient speech = SpeechClient.create()) {
 
-      RecognitionConfig config =
-          RecognitionConfig.newBuilder()
-              .setEncoding(AudioEncoding.FLAC)
-              .setLanguageCode("ko-KR")
-              .setSampleRateHertz(44100)
-              .addSpeechContexts(speechContext)
-              .build();
-      RecognitionAudio audio = RecognitionAudio.newBuilder().setContent(audioBytes).build();
 
-      RecognizeResponse response = speech.recognize(config, audio);
-      List<SpeechRecognitionResult> results = response.getResultsList();
+          ByteString audioBytes = ByteString.copyFrom(data);
+//>>>>>>> Stashed changes
 
-      List<String> res = new ArrayList<>();
-      for (SpeechRecognitionResult result : results) {
-        SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
-        String temp = alternative.getTranscript();
-        String[] tempArr = temp.split(" ");
+          SpeechContext speechContext = SpeechContext.newBuilder().addAllPhrases(TokenData.getAllKey()).build();
 
-        res.addAll(Arrays.asList(tempArr));
+          RecognitionConfig config =
+                  RecognitionConfig.newBuilder()
+                          .setEncoding(AudioEncoding.WEBM_OPUS)
+                          .setLanguageCode("ko-KR")
+                          .setSampleRateHertz(48000)
+                          .addSpeechContexts(speechContext)
+                          .build();
+          RecognitionAudio audio = RecognitionAudio.newBuilder().setContent(audioBytes).build();
+
+          RecognizeResponse response = speech.recognize(config, audio);
+          List<SpeechRecognitionResult> results = response.getResultsList();
+
+          log.info(response.getResultsList().toString());
+
+          List<String> res = new ArrayList<>();
+          for (SpeechRecognitionResult result : results) {
+            SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
+            String temp = alternative.getTranscript();
+            String[] tempArr = temp.split(" ");
+
+            res.addAll(Arrays.asList(tempArr));
+          }
+
+          log.info(res.toString());
+
+          return res;
+        }
       }
-
-      return res;
     }
-  }
-}

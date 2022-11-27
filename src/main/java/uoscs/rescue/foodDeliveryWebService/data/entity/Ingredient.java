@@ -25,11 +25,4 @@ public class Ingredient {
         this.quantity += quantity;
     }
 
-    public boolean consumeQuantity(int consumeQuantity){
-        if(this.quantity - consumeQuantity <0)
-            return false;
-
-        this.quantity -= consumeQuantity;
-        return true;
-    }
 }
