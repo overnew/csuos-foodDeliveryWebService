@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useCallback, useState } from "react";
+import Order from "./Order";
 
+export const orderContext = new React.createContext();
 const AudioRecord = () => {
     const [stream, setStream] = useState();
     const [media, setMedia] = useState();
@@ -8,7 +10,7 @@ const AudioRecord = () => {
     const [source, setSource] = useState();
     const [analyser, setAnalyser] = useState();
     const [audioUrl, setAudioUrl] = useState();
-
+    const [order, setOrder] = useState({});
     function wait(sec) {
         let start = Date.now(), now = start;
         while (now - start < sec * 1000) {
@@ -93,12 +95,12 @@ const AudioRecord = () => {
         }).then((res) => {
             return res.data;
         }).then((json) => {
-            console.log(json);
+            setOrder(json);
         });
     }, [audioUrl])
 
     return (
-        <div>
+        <div className="audio">
             <button 
             className = {onRec ? "onRecAudio" : "offRecAudio"}
             id = "audiobtn"
@@ -106,7 +108,11 @@ const AudioRecord = () => {
             <button 
             className = {"onSubmitAudioFile"}
             id = "audiosubmitbtn"
-            onClick={onSubmitAudioFile}>주문 전송</button>
+                onClick={onSubmitAudioFile}>주문 전송</button>
+            
+            <orderContext.Provider value={order}>
+                <Order />
+            </orderContext.Provider>
         </div>
     );
 };
