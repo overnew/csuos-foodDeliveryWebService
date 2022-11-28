@@ -71,7 +71,7 @@ const AudioRecord = () => {
         btnElement.innerText = "말해서 주문하기";
     };
 
-    const onSubmitAudioFile = useCallback(() => {
+    const onSubmitAudioFile = useCallback(async() => {
         if (audioUrl) {
             console.log(URL.createObjectURL(audioUrl)); // 출력된 링크에서 녹음된 오디오 확인 가능
         }
@@ -83,14 +83,18 @@ const AudioRecord = () => {
 
         formData.append("file", sound);
 
-        axios({
+        await axios({
             method: "POST",
             url: "/stt/voice-data",
             headers: {
                 "Content-Type": "multipart/form-data"
             },
             data: formData
-        })
+        }).then((res) => {
+            return res.data;
+        }).then((json) => {
+            console.log(json);
+        });
     }, [audioUrl])
 
     return (
