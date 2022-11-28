@@ -14,6 +14,7 @@ import uoscs.rescue.foodDeliveryWebService.data.repository.IngredientRepository;
 import uoscs.rescue.foodDeliveryWebService.data.repository.StockRepository;
 import uoscs.rescue.foodDeliveryWebService.exception.StockValueException;
 
+import javax.persistence.EntityManager;
 import java.util.Optional;
 
 @Slf4j
@@ -47,16 +48,16 @@ public class StockDaoImpl implements StockDao {
 
     @Override
     public void initStock() {   //최초 서버 실행시 초기화 기능
-        Ingredient steak = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(STEAK)).name(STEAK).quantity(0).build());
-        Ingredient bacon = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(BACON)).name(BACON).quantity(0).build());
-        Ingredient eggScramble = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(EGG_SCRAMBLE)).name(EGG_SCRAMBLE).quantity(0).build());
-        Ingredient bread = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(BREAD)).name(BREAD).quantity(0).build());
-        Ingredient baguetteBread = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(BAGUETTE_BREAD)).name(BAGUETTE_BREAD).quantity(0).build());
-        Ingredient salad = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(SALAD)).name(SALAD).quantity(0).build());
-        Ingredient coffee_cup = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(COFFEE_CUP)).name(COFFEE_CUP).quantity(0).build());
-        Ingredient coffee_port = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(COFFEE_PORT)).name(COFFEE_PORT).quantity(0).build());
-        Ingredient wine = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(WINE)).name(WINE).quantity(0).build());
-        Ingredient champagne = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(CHAMPAGNE)).name(CHAMPAGNE).quantity(0).build());
+        Ingredient steak = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(STEAK)).name(STEAK).quantity(100).build());
+        Ingredient bacon = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(BACON)).name(BACON).quantity(100).build());
+        Ingredient eggScramble = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(EGG_SCRAMBLE)).name(EGG_SCRAMBLE).quantity(100).build());
+        Ingredient bread = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(BREAD)).name(BREAD).quantity(100).build());
+        Ingredient baguetteBread = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(BAGUETTE_BREAD)).name(BAGUETTE_BREAD).quantity(100).build());
+        Ingredient salad = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(SALAD)).name(SALAD).quantity(100).build());
+        Ingredient coffee_cup = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(COFFEE_CUP)).name(COFFEE_CUP).quantity(100).build());
+        Ingredient coffee_port = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(COFFEE_PORT)).name(COFFEE_PORT).quantity(100).build());
+        Ingredient wine = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(WINE)).name(WINE).quantity(100).build());
+        Ingredient champagne = ingredientRepository.save(Ingredient.builder().id(addIdSuffix(CHAMPAGNE)).name(CHAMPAGNE).quantity(100).build());
 
 
         Stock stock = Stock.builder()
@@ -106,13 +107,16 @@ public class StockDaoImpl implements StockDao {
 
         applyIngredientChangeToStock(changeForm, stockData);
 
+        log.info("changed to, {}", stockData);
         log.info("Stock changes Applied, {}", changeForm);
     }
 
+
     private void applyIngredientChangeToStock(IngredientChangeForm applyForm, Stock stockData) {
 
-        if(applyForm.getSteak() != 0 && checkIngredientValueNotMinus(applyForm.getSteak(), stockData.getSteak().getQuantity()))
+        if(applyForm.getSteak() != 0 && checkIngredientValueNotMinus(applyForm.getSteak(), stockData.getSteak().getQuantity())){
             stockData.getSteak().addQuantity(applyForm.getSteak());
+        }
 
         if(applyForm.getBacon() != 0 && checkIngredientValueNotMinus(applyForm.getBacon(), stockData.getBacon().getQuantity()))
             stockData.getBacon().addQuantity(applyForm.getBacon());
@@ -140,6 +144,7 @@ public class StockDaoImpl implements StockDao {
 
         if(applyForm.getWine() != 0 && checkIngredientValueNotMinus(applyForm.getWine(), stockData.getWine().getQuantity()))
             stockData.getWine().addQuantity(applyForm.getWine());
+
     }
 
     private boolean checkIngredientValueNotMinus(final int addedValue, final int originValue){
@@ -153,6 +158,7 @@ public class StockDaoImpl implements StockDao {
 
     @Override
     public StockDto getStockDtoData(){
+
         return stockMapper.toDto(getStockData());
     }
 

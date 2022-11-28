@@ -10,6 +10,7 @@ import uoscs.rescue.foodDeliveryWebService.data.dao.StockDao;
 import uoscs.rescue.foodDeliveryWebService.data.dto.MemberDto;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
+import uoscs.rescue.foodDeliveryWebService.data.entity.Stock;
 import uoscs.rescue.foodDeliveryWebService.data.enums.Authority;
 import uoscs.rescue.foodDeliveryWebService.data.enums.Grade;
 import uoscs.rescue.foodDeliveryWebService.data.form.IngredientChangeForm;
@@ -53,6 +54,8 @@ public class FoodDeliveryWebServiceApplication implements CommandLineRunner {
 
 		stockService.applyIngredientChangeForm(applyForm);
 
+		Stock stockData = stockDao.getStockData();
+		log.info("stock {}",stockData.toString());
 		log.info("Server init complete");
 	}
 }

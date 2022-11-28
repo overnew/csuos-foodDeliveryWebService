@@ -27,6 +27,7 @@ class StockDaoTest {
         //given
         //stockDao.initStock();
         Stock stock = stockDao.getStockData();
+        System.out.println("stockLL: " +stockDao.getStockDtoData().toString());
 
         IngredientChangeForm applyForm = IngredientChangeForm.builder().steak(10).bread(10).baguetteBread(5).build();
         IngredientChangeForm consumeForm = IngredientChangeForm.builder().steak(5).bread(10).baguetteBread(3).build();
@@ -37,7 +38,7 @@ class StockDaoTest {
 
         //then
         stock = stockDao.getStockData();
-        System.out.println(stock.getSteak());
+        System.out.println("stockLL: " +stockDao.getStockDtoData().toString());
         Assertions.assertThat(stock.getSteak().getQuantity()).isEqualTo(5);
         Assertions.assertThat(stock.getBread().getQuantity()).isEqualTo(0);
         Assertions.assertThat(stock.getBaguetteBread().getQuantity()).isEqualTo(2);
