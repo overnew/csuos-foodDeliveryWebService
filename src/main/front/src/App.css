@@ -397,5 +397,11 @@
   background: #E3DDBA;
 }
 .audio{
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin: 0;
+  padding:0;
+
 }
