@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 
 const AcceptOrder = ({ accept, id }) => {
-    const acceptHandler = async() => {
+    const navigate = useNavigate();
+    const acceptHandler = async () => {
         
             await fetch(`/manage/accept-order?orderId=${id}`, {
                 method: 'POST',
@@ -9,17 +11,17 @@ const AcceptOrder = ({ accept, id }) => {
                 },
                 body: "",
             }).then((res) => {
-               // console.log(res.json().success);
                 return res.json();
             }).then((json) => {
                 console.log(json);
+                navigate('/manager-main');
             }).catch((err) => {
                 console.log(err);
             })
         
     }
     return (
-        <div>
+        <div className="accept">
             {   
                 !accept ?
                     <button type="button" onClick={acceptHandler}>accept</button> :

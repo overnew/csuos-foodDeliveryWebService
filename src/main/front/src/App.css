@@ -1,5 +1,5 @@
 .App{
-  background-color: grey;
+  background-color: #D6D5CB;
   height:max-content;
 }
 .Signin{
@@ -122,6 +122,15 @@
   position: relative;
   left:0px;
 }
+.AdditionalMenu{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin:10px;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 .AdditionalMenu input{
   width:200px;
   padding:10px 0;
@@ -283,4 +292,107 @@
   background: transparent;
   text-align: center;
   width: 100%;
+}
+.StockView{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  width: 380px;
+  height: auto;
+  position: relative;
+  margin: 6% auto;
+  margin-top:1%;
+  
+  padding: 5px;
+  overflow: hidden;
+  background-color:#FAF7C0;
+  color: #9C9678;
+  border:5px solid;
+  border-radius: 30px;
+  padding :10px;
+}
+.Payment{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  width: 380px;
+  height: auto;
+  position: relative;
+  margin: 6% auto;
+  margin-top:1%;
+  
+  padding: 5px;
+  overflow: hidden;
+  background-color:#FAF7C0;
+  color: #9C9678;
+  border:5px solid;
+  border-radius: 30px;
+  padding :10px;
+}
+.Payment input{
+  width:200px;
+  padding:15px 0;
+  margin: 5px 0;
+  border: none;
+  border-bottom: 1px solid #999;
+  outline:none;
+  background: transparent;
+}
+.Payment button{
+  width: 85%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  color:#9C9678;
+  background: #E3DDBA;
+}
+.Order button{
+  width: 55%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  color:#9C9678;
+  background: #E3DDBA;
+}
+.Payment span{
+  margin:10px;
+}
+.accept{
+  display:flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.accept button{
+  width: 55%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  color:#9C9678;
+  background: #E3DDBA;
 }

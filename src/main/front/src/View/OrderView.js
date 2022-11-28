@@ -1,8 +1,6 @@
 import { useState, createContext } from "react"
-import Order from '../components/Order.js'
 import MainMenu from '../components/MainMenu.js'
 import AddtionalMenu from "../components/AddtionalMenu.js";
-import PaymentView from "./PaymentView.js";
 import { useNavigate } from "react-router-dom";
 
 
@@ -27,6 +25,7 @@ const OrderView = () => {
         price:0
     });
     const handleAddress = (e) => {
+        
         setOrder({
             ...order,
             address: e.target.value
@@ -61,7 +60,7 @@ const OrderView = () => {
             <MainMenu order={order} setOrder={setOrder} />
             <AddtionalMenu order={order} setOrder={setOrder} />
             <div className="address">
-                <label htmlFor="input_address">address  </label>
+                <label htmlFor="input_address" placeholder="">address  </label>
                 <br/>
                     <input
                         type='text' name='address' value={order.address} onChange={handleAddress} />

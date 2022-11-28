@@ -54,7 +54,8 @@ const PaymentView = () => {
 
     return (
         <div className="Payment">
-            <h2>시발</h2>
+
+            <span>가격 : {tempPrice}</span>
             <input type="text" placeholder="카드번호" />
             <input type="text" placeholder="cvc" />
             <div>

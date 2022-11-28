@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import ManageOrderItem from "../components/ManageOrderItem";
+import Signout from "../components/Signout";
 
 export const ManageOrderListContext = React.createContext();
 const ManagerMainView = () => {
@@ -32,7 +33,8 @@ const ManagerMainView = () => {
                 <h2>현 주문목록</h2>
             </div>
             <div className="topbarutils">
-                <button type="button" onClick={handleStock}>stock</button>
+                <button type="button" onClick={handleStock}>재고</button>
+                <Signout />
             </div>
             
             <div className="ordereditems">

@@ -58,7 +58,7 @@ const StockManageView = () => {
     }
 
     return (
-        <div>
+        <div className='StockView'>
             <AddtionalMenu order={stock} setOrder={setStock} />
             <button type='button' onClick={onClick}>submit</button>
         </div>
