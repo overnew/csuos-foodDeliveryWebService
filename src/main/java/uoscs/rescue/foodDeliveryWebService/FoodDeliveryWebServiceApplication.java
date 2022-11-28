@@ -12,8 +12,10 @@ import uoscs.rescue.foodDeliveryWebService.data.entity.Member;
 import uoscs.rescue.foodDeliveryWebService.data.entity.Order;
 import uoscs.rescue.foodDeliveryWebService.data.enums.Authority;
 import uoscs.rescue.foodDeliveryWebService.data.enums.Grade;
+import uoscs.rescue.foodDeliveryWebService.data.form.IngredientChangeForm;
 import uoscs.rescue.foodDeliveryWebService.data.repository.MemberRepository;
 import uoscs.rescue.foodDeliveryWebService.data.repository.OrderRepository;
+import uoscs.rescue.foodDeliveryWebService.service.StockService;
 
 import java.util.Optional;
 
@@ -22,6 +24,7 @@ import java.util.Optional;
 public class FoodDeliveryWebServiceApplication implements CommandLineRunner {
 
 	@Autowired private StockDao stockDao;
+	@Autowired private StockService stockService;
 	@Autowired private MemberDao memberDao;
 
 	public static void main(String[] args) {
@@ -35,6 +38,21 @@ public class FoodDeliveryWebServiceApplication implements CommandLineRunner {
 		MemberDto adminMemberDto = MemberDto.builder().id("admin1234").password("admin1234").grade(Grade.GENERAL).authority(Authority.ADMIN).build();
 		memberDao.save(generalMemberDto);
 		memberDao.save(adminMemberDto);
+		IngredientChangeForm applyForm = IngredientChangeForm.builder().
+				coffee_port(100)
+				.steak(100)
+				.bread(100)
+				.baguetteBread(500)
+				.wine(100)
+				.salad(100)
+				.eggScramble(100)
+				.champagne(100)
+				.bacon(100)
+				.coffee_cup(100)
+				.build();
+
+		stockService.applyIngredientChangeForm(applyForm);
+
 		log.info("Server init complete");
 	}
 }

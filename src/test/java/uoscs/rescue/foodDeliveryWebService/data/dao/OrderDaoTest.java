@@ -34,7 +34,7 @@ class OrderDaoTest {
                 .orderedMemberId(memberDto.getId())
                 .build();
 
-        OrderDto savedOrder = orderDao.saveWithMemberId(orderDto);
+        OrderDto savedOrder = orderDao.saveOrder(orderDto);
         Member savedMember = memberDao.findMemberEntityById(memberDto.getId());
 
         //then
@@ -58,7 +58,7 @@ class OrderDaoTest {
         em.flush();
         em.clear();
 
-        OrderDto savedOrder = orderDao.saveWithMemberId(orderDto);
+        OrderDto savedOrder = orderDao.saveOrder(orderDto);
 
         orderDao.acceptOrderById(savedOrder.getId());
 
@@ -88,7 +88,7 @@ class OrderDaoTest {
         em.flush();
         em.clear();
 
-        OrderDto savedOrder = orderDao.saveWithMemberId(orderDto);
+        OrderDto savedOrder = orderDao.saveOrder(orderDto);
         orderDao.deleteById(savedOrder.getId());
 
         em.flush();

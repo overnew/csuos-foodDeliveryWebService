@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDto makeOrder(OrderDto orderDto) {
         setOrderDtoRegularForm(orderDto);
-        return orderDao.saveWithMemberId(orderDto);
+        return orderDao.saveOrder(orderDto);
     }
 
     @Override

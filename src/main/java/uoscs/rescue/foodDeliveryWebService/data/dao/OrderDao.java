@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface OrderDao {
 
-    OrderDto saveWithMemberId(OrderDto orderDto);
+    OrderDto saveOrder(OrderDto orderDto);
 
     OrderDto findById(Long id);
     List<OrderDto> getAllOrderList();

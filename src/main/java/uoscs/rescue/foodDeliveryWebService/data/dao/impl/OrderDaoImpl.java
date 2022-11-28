@@ -33,7 +33,7 @@ public class OrderDaoImpl implements OrderDao {
     private final OrderMapper orderMapper;
 
     @Override
-    public OrderDto saveWithMemberId(OrderDto orderDto) {
+    public OrderDto saveOrder(OrderDto orderDto) {
         Member orderedMember = memberDao.findMemberEntityById(orderDto.getOrderedMemberId());
 
         Order order = orderMapper.dtoToOrder(orderDto);
